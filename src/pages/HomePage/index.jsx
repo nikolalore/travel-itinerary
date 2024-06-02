@@ -10,14 +10,16 @@ export const HomePage = () => {
   };
 
   return (
-    <div>
-      <h1>Headline</h1>
-      <h2>Subheadline</h2>
-      {!isFormVisible && <button onClick={toggleFormVisibility}>
-        Plánuj
-      </button>}
+    <div className="content">
+      <h1>Vaše dovolená začíná právě tady</h1>
+      <h2>Klikněte a nechte se rázem přenést na své vysněné místo. </h2>
+      <div id="form">
+        {!isFormVisible && (
+          <button onClick={toggleFormVisibility}>PLÁNUJ ↓</button>
+        )}
 
-      {isFormVisible && <Form />}
+        {isFormVisible && <Form />}
+      </div>
     </div>
   );
 };

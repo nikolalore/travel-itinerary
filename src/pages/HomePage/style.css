@@ -1,13 +1,57 @@
-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 4rem;
+body {
+  background-image: url("img/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  font-size: 30px;
 }
 
-.logo {
-  width: 10rem;
-  height: 10rem;
-  background-image: url(./img/rocket.svg);
-  background-size: contain;
+.content {
+  padding-top: 100px;
+}
+
+.content h1 {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: 2.5em;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #f1f2f3;
+
+}
+
+
+
+.content h2 {
+  display: flex;
+  font-size: 1em;
+  justify-content: center;
+  color: white;
+  padding: 5px 10px 5px 10px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+#form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+#form button {
+  all: initial;
+  color: white;
+  background-color: #1b1b1b;
+  border-radius: 20px;
+  font-size: 1.5em;
+  padding: 1% 5% 1% 5%;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+
 }
