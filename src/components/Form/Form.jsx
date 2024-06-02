@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import './style.css';
 
 export const Form = () => {
   const [startDate, setStartDate] = useState(null);
@@ -21,9 +22,9 @@ export const Form = () => {
 
   return (
     <div>
-      <form>
+      <form className="form-container">
         <div>
-          <label>Vyber zemi:</label>
+          <label className="label-country">Vyber zemi:</label>
           <select
             id="countries"
             value={selectedCountry}

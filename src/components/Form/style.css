@@ -1,0 +1,22 @@
+.form-container {
+  background-color: rgba(255, 255, 255, 0.6);
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  display: block;
+  /* aby byl label na celou šířku boxíku*/
+  margin-bottom: 5px;
+}
+
+select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  font-size: 16px;
+}
