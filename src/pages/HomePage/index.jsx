@@ -13,9 +13,9 @@ export const HomePage = () => {
     <div>
       <h1>Headline</h1>
       <h2>Subheadline</h2>
-      <button onClick={toggleFormVisibility}>
-        {isFormVisible ? 'Hide Form' : 'Show Form'}
-      </button>
+      {!isFormVisible && <button onClick={toggleFormVisibility}>
+        Plánuj
+      </button>}
 
       {isFormVisible && <Form />}
     </div>
