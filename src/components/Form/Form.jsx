@@ -3,6 +3,7 @@ import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './style.css';
 import { differenceInDays, eachDayOfInterval } from 'date-fns';
+import { cs } from 'date-fns/locale/cs';
 
 export const Form = () => {
   const [startDate, setStartDate] = useState(null);
@@ -35,6 +36,8 @@ export const Form = () => {
     const intervalDays = eachDayOfInterval({ start, end }); //vrací pole objektů v eng
     setDaysDifference(diffDays + 1);
     setDaysInInterval(intervalDays);
+    console.log('days difference ' + daysDifference);
+    console.log('days interval ' + daysInInterval);
   };
 
   const handleSubmit = (event) => {
@@ -62,16 +65,18 @@ export const Form = () => {
           <label>Zadejte datum:</label>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <ReactDatePicker
+            locale={cs}
               dateFormat="dd.MM.yyyy"
               selected={startDate}
               onChange={handleStartDate}
               selectsStart
               startDate={startDate}
               endDate={endDate}
-              placeholderText="Start Date"
+              placeholderText="Začátek"
             />
             <span style={{ margin: '0 10px' }}>do</span>
             <ReactDatePicker
+            locale={cs}
               dateFormat="dd.MM.yyyy"
               selected={endDate}
               onChange={handleEndDate}
@@ -79,7 +84,7 @@ export const Form = () => {
               startDate={startDate}
               endDate={endDate}
               minDate={startDate}
-              placeholderText="End Date"
+              placeholderText="Konec"
             />
           </div>
         </div>
