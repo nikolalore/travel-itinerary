@@ -5,6 +5,10 @@ import './style.css';
 import { differenceInDays, eachDayOfInterval } from 'date-fns';
 import { cs } from 'date-fns/locale/cs';
 
+import { createClient } from '@supabase/supabase-js';
+const supabaseUrl = import.meta.env.VITE_DB_URL;
+const supabaseKey = import.meta.env.VITE_API_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 export const Form = () => {
   const [startDate, setStartDate] = useState(null);
@@ -39,9 +43,17 @@ export const Form = () => {
     setDaysInInterval(intervalDays);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setDates(startDate, endDate);
+
+    const { data } = await supabase.from('trips').insert([
+      {
+        start_date: startDate,
+        end_date: endDate,
+        country: selectedCountry,
+      },
+    ]);
   };
 
   return (
@@ -64,7 +76,7 @@ export const Form = () => {
           <label>Zadejte datum:</label>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <ReactDatePicker
-            locale={cs}
+              locale={cs}
               dateFormat="dd.MM.yyyy"
               selected={startDate}
               onChange={handleStartDate}
@@ -75,7 +87,7 @@ export const Form = () => {
             />
             <span style={{ margin: '0 10px' }}>do</span>
             <ReactDatePicker
-            locale={cs}
+              locale={cs}
               dateFormat="dd.MM.yyyy"
               selected={endDate}
               onChange={handleEndDate}
