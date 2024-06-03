@@ -1,9 +1,22 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Form } from '../../components/Form/Form';
 import './style.css';
 
+import { createClient } from '@supabase/supabase-js';
+const supabaseUrl = import.meta.env.VITE_DB_URL;
+const supabaseKey = import.meta.env.VITE_API_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
+
 export const HomePage = () => {
   const [isFormVisible, setFormVisible] = useState(false);
+
+  useEffect(() => {
+    const fetchTrips = async () => {
+      const { data } = await supabase.from('trips').select();
+      console.log(data);
+    };
+    fetchTrips();
+  }, []);
 
   const toggleFormVisibility = () => {
     setFormVisible(!isFormVisible);

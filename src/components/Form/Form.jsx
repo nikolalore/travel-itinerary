@@ -5,6 +5,7 @@ import './style.css';
 import { differenceInDays, eachDayOfInterval } from 'date-fns';
 import { cs } from 'date-fns/locale/cs';
 
+
 export const Form = () => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
@@ -36,8 +37,6 @@ export const Form = () => {
     const intervalDays = eachDayOfInterval({ start, end }); //vrací pole objektů v eng
     setDaysDifference(diffDays + 1);
     setDaysInInterval(intervalDays);
-    console.log('days difference ' + daysDifference);
-    console.log('days interval ' + daysInInterval);
   };
 
   const handleSubmit = (event) => {
