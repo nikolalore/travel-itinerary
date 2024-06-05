@@ -2,8 +2,9 @@ import { useState } from 'react';
 import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './style.css';
-import { differenceInDays, eachDayOfInterval } from 'date-fns';
 import { cs } from 'date-fns/locale/cs';
+import { useNavigate } from 'react-router-dom';
+import React from 'react';
 
 import { createClient } from '@supabase/supabase-js';
 const supabaseUrl = import.meta.env.VITE_DB_URL;
@@ -14,15 +15,8 @@ export const Form = () => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [selectedCountry, setSelectedCountry] = useState('');
-  const [daysDifference, setDaysDifference] = useState('');
-  const [daysInInterval, setDaysInInterval] = useState('');
 
-  const options = {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  }; //nastavení toho, jak se bude zobrazovat datum
+  const navigate = useNavigate(); //pro navigaci na novou stránku dle id v URL
 
   const handleStartDate = (date) => {
     setStartDate(date);
@@ -36,29 +30,32 @@ export const Form = () => {
     setSelectedCountry(e.target.value);
   };
 
-  const setDates = (start, end) => {
-    const diffDays = differenceInDays(end, start);
-    const intervalDays = eachDayOfInterval({ start, end }); //vrací pole objektů v eng
-    setDaysDifference(diffDays + 1);
-    setDaysInInterval(intervalDays);
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setDates(startDate, endDate);
 
-    const { data } = await supabase.from('trips').insert([
-      {
-        start_date: startDate,
-        end_date: endDate,
-        country: selectedCountry,
-      },
-    ]);
+    const { data } = await supabase
+      .from('trips')
+      .insert([
+        {
+          start_date: startDate,
+          end_date: endDate,
+          country: selectedCountry,
+        },
+      ])
+      .select(); //select() vrací hodnoty vložené do databáze tak, abychom z nich mohli vytáhnout id
+
+    // if (error) {
+    //   console.error('Chyba při vkládání dat do databáze:', error);
+    //   return;
+    // }
+
+    const tripId = data[0].id; // tohle je ID vyplněného tripu, [0] získává první položku z vrácených dat, což v tomhle případě odpovídá nově vložené cestě, .id –> získávám konkrétní id z nového tripu
+    navigate(`/results/${tripId}`);
   };
 
   return (
     <div>
-      <form className="form-container">
+      <form className="form-container" onSubmit={handleSubmit}>
         <div>
           <label className="label-country">Vyber zemi:</label>
           <select
@@ -99,15 +96,8 @@ export const Form = () => {
             />
           </div>
         </div>
-        <button onClick={handleSubmit}>Hotovo</button>
+        <button type="submit">Hotovo</button>
       </form>
-
-      <div className="day--list">
-        {daysInInterval &&
-          daysInInterval.map((day) => (
-            <div>{day.toLocaleDateString('cs-CZ', options)} </div>
-          ))}
-      </div>
     </div>
   );
 };
