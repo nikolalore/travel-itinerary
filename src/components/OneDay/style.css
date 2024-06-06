@@ -25,3 +25,21 @@
   flex-direction: column;
   align-items: center;
 }
+
+
+@media (max-width: 1024px) {
+  .day-button {
+    width: 80%;
+    padding: 30px;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .day-button {
+    font-size: 0.7em;
+    max-width: 320px;
+    width: 80%;
+    padding: 30px;
+  }
+}
