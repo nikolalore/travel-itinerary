@@ -1,12 +1,10 @@
-import { useParams } from 'react-router-dom';
 import React from 'react';
+import './style.css';
 
-export const DayDetail = () => {
-  const { date } = useParams();
-
+export const OneDay = ({ day, options }) => {
   return (
-    <div>
-      <h2>Detaily o dni {date}</h2>
-    </div>
+    <button className="day-button">
+      {day.toLocaleDateString('cs-CZ', options)}
+    </button>
   );
 };

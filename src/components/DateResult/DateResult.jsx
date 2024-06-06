@@ -2,6 +2,8 @@ import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import { eachDayOfInterval } from 'date-fns';
+import './style.css';
+import { OneDay } from '../OneDay/OneDay';
 
 const supabaseUrl = import.meta.env.VITE_DB_URL;
 const supabaseKey = import.meta.env.VITE_API_KEY;
@@ -51,10 +53,10 @@ export const DateResult = () => {
   return (
     trip && (
       <div>
-        <h2>Celá tvá dovolená: </h2>
+        <h2>Tady bude header </h2>
         <div className="day-list">
           {daysInTrip.map((day, index) => (
-            <div key={index}>{day.toLocaleDateString('cs-CZ', options)}</div>
+            <OneDay key={index} day={day} options={options} />
           ))}
         </div>
       </div>
