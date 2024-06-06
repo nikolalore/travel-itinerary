@@ -5,6 +5,7 @@ import './style.css';
 import { cs } from 'date-fns/locale/cs';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
+import { format } from 'date-fns';
 
 import { createClient } from '@supabase/supabase-js';
 const supabaseUrl = import.meta.env.VITE_DB_URL;
@@ -33,12 +34,15 @@ export const Form = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    const formattedStartDate = format(startDate, 'yyyy/MM/dd');
+    const formattedEndDate = format(endDate, 'yyyy/MM/dd');
+
     const { data } = await supabase
       .from('trips')
       .insert([
         {
-          start_date: startDate,
-          end_date: endDate,
+          start_date: formattedStartDate,
+          end_date: formattedEndDate,
           country: selectedCountry,
         },
       ])
