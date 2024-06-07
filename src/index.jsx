@@ -3,6 +3,7 @@ import { HomePage } from './pages/HomePage';
 import './global.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { DateResult } from './components/DateResult/DateResult';
+import { DayDetail } from './components/DayDetail/DayDetail';
 
 const router = createBrowserRouter([
   {
@@ -12,6 +13,10 @@ const router = createBrowserRouter([
   {
     path: '/results/:id',
     element: <DateResult />,
+  },
+  {
+    path: '/trip/:tripId/day/:date',
+    element: <DayDetail />,
   },
 ]);
 
