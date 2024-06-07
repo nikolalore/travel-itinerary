@@ -6,6 +6,7 @@ import { cs } from 'date-fns/locale/cs';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import { format } from 'date-fns';
+import { countriesData } from '../../../public/countriesData/countriesData';
 
 import { createClient } from '@supabase/supabase-js';
 const supabaseUrl = import.meta.env.VITE_DB_URL;
@@ -36,6 +37,7 @@ export const Form = () => {
 
     const formattedStartDate = format(startDate, 'yyyy/MM/dd');
     const formattedEndDate = format(endDate, 'yyyy/MM/dd');
+    const formattedCountry = selectedCountry.toString();
 
     const { data } = await supabase
       .from('trips')
@@ -43,7 +45,7 @@ export const Form = () => {
         {
           start_date: formattedStartDate,
           end_date: formattedEndDate,
-          country: selectedCountry,
+          country: formattedCountry,
         },
       ])
       .select(); //select() vrací hodnoty vložené do databáze tak, abychom z nich mohli vytáhnout id
@@ -68,9 +70,11 @@ export const Form = () => {
             onChange={handleCountry}
           >
             <option value="">Vyberte</option>
-            <option value="anglie">Anglie</option>
-            <option value="belgie">Belgie</option>
-            <option value="spanelsko">Španělsko</option>
+            {countriesData.map((country) => (
+              <option key={country.code} value={country.code}>
+                {country.name}
+              </option>
+            ))}
           </select>
         </div>
         <div>
@@ -101,7 +105,9 @@ export const Form = () => {
           </div>
         </div>
         <div className="button-container">
-          <button type="submit">Hotovo</button>
+          <button className="btn-submit" type="submit">
+            Hotovo
+          </button>
         </div>
       </form>
     </div>

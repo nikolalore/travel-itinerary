@@ -1,0 +1,40 @@
+.header {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  /* Pro případy, kdy je pozadí větší */
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 350px;
+  width: 100%;
+  color: white;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+  font-family: 'Inter', sans-serif;
+}
+
+.header h1,
+.header h2 {
+  margin: 0;
+}
+
+.header h1 {
+  font-size: 3em;
+}
+
+.header h2 {
+  font-size: 1.5em;
+}

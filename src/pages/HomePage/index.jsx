@@ -17,12 +17,14 @@ export const HomePage = () => {
 
   return (
     <div className="content">
-      <h1>Vaše dovolená začíná právě tady</h1>
-      <h2>Klikněte a nechte se rázem přenést na své vysněné místo. </h2>
+      <h1>Naplánujte si svou ideální dovolenou</h1>
+      <h2>
+        Vytvořte si vlastní cestovní itinerář a plánujte snadno a přehledně.
+      </h2>
       <div id="form">
         {!isFormVisible && (
           <button onClick={toggleFormVisibility} className="btn-plan">
-            PLÁNUJ ↓
+            PLÁNUJ
           </button>
         )}
 

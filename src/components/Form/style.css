@@ -29,7 +29,7 @@ input {
   padding: 20px 0px 0px 0px;
 }
 
-#form button {
+.btn-submit {
   all: initial;
   color: black;
   background-color: white;
