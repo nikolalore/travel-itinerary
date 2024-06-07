@@ -61,7 +61,7 @@ export const Form = () => {
     <div>
       <form className="form-container" onSubmit={handleSubmit}>
         <div>
-          <label className="label-country">Vyber zemi:</label>
+          <label className="label-country">Kam se chystáte?</label>
           <select
             id="countries"
             value={selectedCountry}
@@ -74,7 +74,7 @@ export const Form = () => {
           </select>
         </div>
         <div>
-          <label>Zadejte datum:</label>
+          <label className="label-date">Zadejte termín vaší dovolené:</label>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <ReactDatePicker
               locale={cs}
@@ -100,7 +100,9 @@ export const Form = () => {
             />
           </div>
         </div>
-        <button type="submit">Hotovo</button>
+        <div className="button-container">
+          <button type="submit">Hotovo</button>
+        </div>
       </form>
     </div>
   );
