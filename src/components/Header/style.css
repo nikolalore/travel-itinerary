@@ -24,6 +24,8 @@ html {
   background-size: cover;
   background-position: center;
   font-family: 'Inter', sans-serif;
+  border-radius: 30px;
+  overflow: hidden;
 }
 
 .header h1,

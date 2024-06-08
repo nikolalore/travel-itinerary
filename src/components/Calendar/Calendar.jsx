@@ -1,5 +1,5 @@
 import './style.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import { format } from 'date-fns';
 import { useParams } from 'react-router-dom';
@@ -32,19 +32,7 @@ export const Calendar = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const newEvent = { ...formData, hour: currentHour };
-    setEvents([...events, newEvent]);
-    setShowForm(false);
-    setFormData({
-      startTime: '',
-      endTime: '',
-      name: '',
-      location: '',
-      description: '',
-    });
-
+  const addEvent = async (newEvent) => {
     const { data } = await supabase
       .from('calendar_events')
       .insert([
@@ -61,15 +49,33 @@ export const Calendar = () => {
       .select();
   };
 
-  const findEvent = (i) => {
-    const formattedIndex = i > 10 ? i.toString() : `0${i.toString()}`;
-    if (events.length === 0) return '';
-    const currentEvent = events.find(
-      (event) => event.startTime.split(':')[0] === formattedIndex,
-    );
-    if (currentEvent === undefined) return '';
-    return currentEvent.name;
+  const fetchEvents = async () => {
+    const { data } = await supabase
+      .from('calendar_events')
+      .select()
+      .eq('trip_id', tripId);
+    setEvents(data);
+    console.log(data);
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newEvent = { ...formData, hour: currentHour };
+    //setEvents([...events, newEvent]);
+    setShowForm(false);
+    setFormData({
+      startTime: '',
+      endTime: '',
+      name: '',
+      location: '',
+      description: '',
+    });
+    addEvent(newEvent);
+  };
+
+  useEffect(() => {
+    fetchEvents();
+  }, [formData]);
 
   return (
     <div className="calendar">
@@ -78,7 +84,6 @@ export const Calendar = () => {
           <div key={i} className="hour" onClick={() => handleCalendarClick(i)}>
             {i < 10 ? `0${i}:00` : `${i}:00`}
             <span></span>
-            <div className="event">{findEvent(i)}</div>
           </div>
         ))}
       </div>
