@@ -1,0 +1,49 @@
+.calendar {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: auto;
+  border: 1px solid #ccc;
+}
+
+.hours {
+  display: flex;
+  flex-direction: column;
+}
+
+.hour {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.hour:hover {
+  background-color: #f0f0f0;
+}
+
+.event-form {
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  margin-top: 10px;
+}
+
+.event-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.event-form input {
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 5px;
+}
+
+button {
+  padding: 5px 10px;
+}
+
+
+
+.event-details {
+  font-size: 12px;
+}
