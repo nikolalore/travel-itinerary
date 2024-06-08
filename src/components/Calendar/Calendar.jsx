@@ -3,12 +3,13 @@ import React, { useEffect, useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import { format } from 'date-fns';
 import { useParams } from 'react-router-dom';
+import { Event } from '../Event/Event';
+
 const supabaseUrl = import.meta.env.VITE_DB_URL;
 const supabaseKey = import.meta.env.VITE_API_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-export const Calendar = () => {
-  const [events, setEvents] = useState([]);
+export const Calendar = ({ events, onSubmit }) => {
   const [showForm, setShowForm] = useState(false);
   const [currentHour, setCurrentHour] = useState(null);
   const [formData, setFormData] = useState({
@@ -49,19 +50,9 @@ export const Calendar = () => {
       .select();
   };
 
-  const fetchEvents = async () => {
-    const { data } = await supabase
-      .from('calendar_events')
-      .select()
-      .eq('trip_id', tripId);
-    setEvents(data);
-    console.log(data);
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newEvent = { ...formData, hour: currentHour };
-    //setEvents([...events, newEvent]);
     setShowForm(false);
     setFormData({
       startTime: '',
@@ -70,12 +61,9 @@ export const Calendar = () => {
       location: '',
       description: '',
     });
-    addEvent(newEvent);
+    await addEvent(newEvent);
+    onSubmit();
   };
-
-  useEffect(() => {
-    fetchEvents();
-  }, [formData]);
 
   return (
     <div className="calendar">
@@ -141,14 +129,15 @@ export const Calendar = () => {
 
       <div className="events">
         {events.map((event, index) => (
-          <div key={index} className="event" style={{ top: event.hour * 50 }}>
-            <div className="event-details">
-              <p>
-                {event.startTime} - {event.endTime}
-              </p>
-              <p>{event.location}</p>
-              <p>{event.description}</p>
-            </div>
+          <div className="event">
+            <Event
+              key={index}
+              name={event.name}
+              description={event.description}
+              startTime={event.start_time}
+              endTime={event.end_time}
+              location={event.location}
+            />
           </div>
         ))}
       </div>
