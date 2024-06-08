@@ -3,6 +3,7 @@
   flex-direction: column;
   width: 400px;
   margin-left: 35px;
+  position: relative;
 }
 
 .hours {

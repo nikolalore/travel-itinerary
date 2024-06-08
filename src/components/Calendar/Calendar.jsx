@@ -82,84 +82,94 @@ export const Calendar = ({ events, onSubmit }) => {
   }
 
   return (
-    <div className="calendar">
+    <>
       <div className="calendar-headline">{formattedFullDate}</div>
-      <div className="hours">
-        {Array.from({ length: 24 }, (_, i) => (
-          <div key={i} className="hour" onClick={() => handleCalendarClick(i)}>
-            {i < 10 ? `0${i}:00` : `${i}:00`}
-            <span></span>
-          </div>
-        ))}
+      <div className="calendar">
+        <div className="hours">
+          {Array.from({ length: 24 }, (_, i) => (
+            <div
+              key={i}
+              className="hour"
+              onClick={() => handleCalendarClick(i)}
+            >
+              {i < 10 ? `0${i}:00` : `${i}:00`}
+              <span></span>
+            </div>
+          ))}
+        </div>
+
+        <EventDrawer
+          opened={eventDrawer}
+          onClose={() => setEventDrawer(false)}
+        />
+
+        {showForm && (
+          <form className="event-form" onSubmit={handleSubmit}>
+            <label>
+              Čas od:
+              <input
+                type="time"
+                name="startTime"
+                value={formData.startTime}
+                onChange={handleInputChange}
+              />
+            </label>
+            <label>
+              Čas do:
+              <input
+                type="time"
+                name="endTime"
+                value={formData.endTime}
+                onChange={handleInputChange}
+              />
+            </label>
+            <label>
+              Název:
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+              />
+            </label>
+            <label>
+              Místo:
+              <input
+                type="text"
+                name="location"
+                value={formData.location}
+                onChange={handleInputChange}
+              />
+            </label>
+            <label>
+              Popis:
+              <input
+                type="text"
+                name="description"
+                value={formData.description}
+                onChange={handleInputChange}
+              />
+            </label>
+            <button type="submit">Uložit</button>
+          </form>
+        )}
+
+        <div className="events">
+          {events.map((event, index) => (
+            <div>
+              <Event
+                key={index}
+                name={event.name}
+                description={event.description}
+                startTime={event.start_time}
+                endTime={event.end_time}
+                location={event.location}
+                date={event.date}
+              />
+            </div>
+          ))}
+        </div>
       </div>
-
-      <EventDrawer opened={eventDrawer} onClose={() => setEventDrawer(false)} />
-
-      {showForm && (
-        <form className="event-form" onSubmit={handleSubmit}>
-          <label>
-            Čas od:
-            <input
-              type="time"
-              name="startTime"
-              value={formData.startTime}
-              onChange={handleInputChange}
-            />
-          </label>
-          <label>
-            Čas do:
-            <input
-              type="time"
-              name="endTime"
-              value={formData.endTime}
-              onChange={handleInputChange}
-            />
-          </label>
-          <label>
-            Název:
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-            />
-          </label>
-          <label>
-            Místo:
-            <input
-              type="text"
-              name="location"
-              value={formData.location}
-              onChange={handleInputChange}
-            />
-          </label>
-          <label>
-            Popis:
-            <input
-              type="text"
-              name="description"
-              value={formData.description}
-              onChange={handleInputChange}
-            />
-          </label>
-          <button type="submit">Uložit</button>
-        </form>
-      )}
-
-      <div className="events">
-        {events.map((event, index) => (
-          <div className="event">
-            <Event
-              key={index}
-              name={event.name}
-              description={event.description}
-              startTime={event.start_time}
-              endTime={event.end_time}
-              location={event.location}
-            />
-          </div>
-        ))}
-      </div>
-    </div>
+    </>
   );
 };

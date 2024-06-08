@@ -1,0 +1,12 @@
+.event {
+  background-color: #01779B;
+  color: white;
+  font-size: 1rem;
+  font-family: "Inter", sans-serif;
+  position: absolute;
+  right: 5px;
+  width: 300px;
+  border-radius: 10px;
+  padding: 10px;
+
+}
