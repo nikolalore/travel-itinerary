@@ -39,7 +39,7 @@ const LogoControl = ({ position }) => {
 export const DayDetail = () => {
   const [tripData, setTripData] = useState('loading');
 
-  const { tripId } = useParams();
+  const { tripId, date } = useParams();
 
   const fetchDayDetail = async () => {
     const { data } = await supabase
@@ -48,11 +48,10 @@ export const DayDetail = () => {
         `country, country_name, coordinates,
      calendar_events(date, start_time, end_time, name, location, description)`,
       )
-      .eq('id', tripId);
-    console.log(data[0]);
+      .eq('id', tripId)
+      .eq('calendar_events.date', date);
     setTripData(data[0]);
   };
-  console.log(tripData);
 
   useEffect(() => {
     fetchDayDetail();

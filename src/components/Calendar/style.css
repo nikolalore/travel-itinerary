@@ -1,9 +1,8 @@
 .calendar {
   display: flex;
   flex-direction: column;
-  width: 300px;
-  margin: auto;
-  border: 1px solid #ccc;
+  width: 400px;
+  margin-left: 35px;
 }
 
 .hours {
@@ -11,10 +10,19 @@
   flex-direction: column;
 }
 
+.calendar-headline {
+  font-family: "Inter", sans-serif;
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+}
+
 .hour {
   padding: 10px;
-  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
   cursor: pointer;
+  font-size: 1rem;
+  font-family: "Inter", sans-serif;
+  height: 60px;
 }
 
 .hour:hover {
@@ -41,8 +49,6 @@
 button {
   padding: 5px 10px;
 }
-
-
 
 .event-details {
   font-size: 12px;

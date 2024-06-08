@@ -20,9 +20,18 @@ export const Calendar = ({ events, onSubmit }) => {
     description: '',
   });
 
+  const options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  };
+
   const { tripId } = useParams();
   const { date } = useParams();
   const formattedDate = format(date, 'yyyy/MM/dd');
+  const tripDate = new Date(date);
+  const formattedFullDate = tripDate.toLocaleDateString('cs-CZ', options);
 
   const handleCalendarClick = (hour) => {
     setCurrentHour(hour);
@@ -71,6 +80,7 @@ export const Calendar = ({ events, onSubmit }) => {
 
   return (
     <div className="calendar">
+      <div className="calendar-headline">{formattedFullDate}</div>
       <div className="hours">
         {Array.from({ length: 24 }, (_, i) => (
           <div key={i} className="hour" onClick={() => handleCalendarClick(i)}>
