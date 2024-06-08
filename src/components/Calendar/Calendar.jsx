@@ -5,6 +5,7 @@ import { format } from 'date-fns';
 import { useParams } from 'react-router-dom';
 import { Event } from '../Event/Event';
 import { EventDrawer } from '../EventDrawer/EventDrawer';
+import { createPortal } from 'react-dom';
 
 const supabaseUrl = import.meta.env.VITE_DB_URL;
 const supabaseKey = import.meta.env.VITE_API_KEY;
@@ -38,6 +39,9 @@ export const Calendar = ({ events, onSubmit }) => {
   const handleCalendarClick = (hour) => {
     setCurrentHour(hour);
     setShowForm(true);
+  };
+
+  const handleEventClick = () => {
     setEventDrawer(true);
   };
 
@@ -81,6 +85,8 @@ export const Calendar = ({ events, onSubmit }) => {
     return null;
   }
 
+  console.log('drawer', eventDrawer);
+
   return (
     <>
       <div className="calendar-headline">{formattedFullDate}</div>
@@ -98,10 +104,13 @@ export const Calendar = ({ events, onSubmit }) => {
           ))}
         </div>
 
-        <EventDrawer
-          opened={eventDrawer}
-          onClose={() => setEventDrawer(false)}
-        />
+        {createPortal(
+          <EventDrawer
+            opened={eventDrawer}
+            onClose={() => setEventDrawer(false)}
+          />,
+          document.body,
+        )}
 
         {showForm && (
           <form className="event-form" onSubmit={handleSubmit}>
@@ -158,6 +167,7 @@ export const Calendar = ({ events, onSubmit }) => {
           {events.map((event, index) => (
             <div>
               <Event
+                onOpen={() => setEventDrawer(true)}
                 key={index}
                 name={event.name}
                 description={event.description}

@@ -1,6 +1,7 @@
 import './style.css';
 
 export const EventDrawer = ({ opened, onClose }) => {
+  console.log('text', opened);
   if (!opened) {
     return null;
   }
