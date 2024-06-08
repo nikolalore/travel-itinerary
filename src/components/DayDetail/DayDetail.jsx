@@ -46,7 +46,7 @@ export const DayDetail = () => {
     const { data } = await supabase
       .from('trips')
       .select(
-        `country, country_name, coordinates,
+        `country, country_name, coordinates,notepad_content,
      calendar_events(date, start_time, end_time, name, location, description)`,
       )
       .eq('id', tripId)
@@ -68,8 +68,12 @@ export const DayDetail = () => {
 
   return (
     <div className="background-white">
-      <h1>Ahoj tady budou widgety</h1>
-      <Notepad />
+      <h1>Ahoj, tady už se objevují widgety</h1>
+      <Notepad
+        onSubmit={handleSubmit}
+        tripId={tripId}
+        content={tripData.notepad_content}
+      />
       <Calendar events={tripData.calendar_events} onSubmit={handleSubmit} />
       <main>
         <MapContainer
