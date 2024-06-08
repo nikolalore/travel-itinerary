@@ -4,6 +4,8 @@
   width: 400px;
   margin-left: 35px;
   position: relative;
+  /* max-height: 100px;
+  overflow-y: auto; */
 }
 
 .hours {

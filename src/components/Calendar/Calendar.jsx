@@ -11,17 +11,8 @@ const supabaseUrl = import.meta.env.VITE_DB_URL;
 const supabaseKey = import.meta.env.VITE_API_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-export const Calendar = ({ events, onSubmit }) => {
-  const [showForm, setShowForm] = useState(false);
-  const [currentHour, setCurrentHour] = useState(null);
-  const [formData, setFormData] = useState({
-    startTime: '',
-    endTime: '',
-    name: '',
-    location: '',
-    description: '',
-  });
-  const [eventDrawer, setEventDrawer] = useState(false);
+export const Calendar = ({ events }) => {
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
   const options = {
     weekday: 'long',
@@ -35,19 +26,6 @@ export const Calendar = ({ events, onSubmit }) => {
   const formattedDate = format(date, 'yyyy/MM/dd');
   const tripDate = new Date(date);
   const formattedFullDate = tripDate.toLocaleDateString('cs-CZ', options);
-
-  const handleCalendarClick = (hour) => {
-    setCurrentHour(hour);
-    setShowForm(true);
-  };
-
-  const handleEventClick = () => {
-    setEventDrawer(true);
-  };
-
-  const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
   const addEvent = async (newEvent) => {
     const { data } = await supabase
@@ -66,26 +44,13 @@ export const Calendar = ({ events, onSubmit }) => {
       .select();
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const newEvent = { ...formData, hour: currentHour };
-    setShowForm(false);
-    setFormData({
-      startTime: '',
-      endTime: '',
-      name: '',
-      location: '',
-      description: '',
-    });
-    await addEvent(newEvent);
-    onSubmit();
-  };
-
   if (!events) {
     return null;
   }
 
-  console.log('drawer', eventDrawer);
+  const handleSubmit = () => {
+    console.log(selectedEvent);
+  };
 
   return (
     <>
@@ -106,68 +71,19 @@ export const Calendar = ({ events, onSubmit }) => {
 
         {createPortal(
           <EventDrawer
-            opened={eventDrawer}
-            onClose={() => setEventDrawer(false)}
+            event={selectedEvent}
+            onClose={() => setSelectedEvent(null)}
+            onChange={(e) => setSelectedEvent(e)}
+            onSubmit={handleSubmit}
           />,
           document.body,
-        )}
-
-        {showForm && (
-          <form className="event-form" onSubmit={handleSubmit}>
-            <label>
-              Čas od:
-              <input
-                type="time"
-                name="startTime"
-                value={formData.startTime}
-                onChange={handleInputChange}
-              />
-            </label>
-            <label>
-              Čas do:
-              <input
-                type="time"
-                name="endTime"
-                value={formData.endTime}
-                onChange={handleInputChange}
-              />
-            </label>
-            <label>
-              Název:
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-              />
-            </label>
-            <label>
-              Místo:
-              <input
-                type="text"
-                name="location"
-                value={formData.location}
-                onChange={handleInputChange}
-              />
-            </label>
-            <label>
-              Popis:
-              <input
-                type="text"
-                name="description"
-                value={formData.description}
-                onChange={handleInputChange}
-              />
-            </label>
-            <button type="submit">Uložit</button>
-          </form>
         )}
 
         <div className="events">
           {events.map((event, index) => (
             <div>
               <Event
-                onOpen={() => setEventDrawer(true)}
+                onOpen={() => setSelectedEvent(events[index])}
                 key={index}
                 name={event.name}
                 description={event.description}
