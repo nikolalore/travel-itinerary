@@ -4,6 +4,7 @@ import { createClient } from '@supabase/supabase-js';
 import { format } from 'date-fns';
 import { useParams } from 'react-router-dom';
 import { Event } from '../Event/Event';
+import { EventDrawer } from '../EventDrawer/EventDrawer';
 
 const supabaseUrl = import.meta.env.VITE_DB_URL;
 const supabaseKey = import.meta.env.VITE_API_KEY;
@@ -19,6 +20,7 @@ export const Calendar = ({ events, onSubmit }) => {
     location: '',
     description: '',
   });
+  const [eventDrawer, setEventDrawer] = useState(false);
 
   const options = {
     weekday: 'long',
@@ -36,6 +38,7 @@ export const Calendar = ({ events, onSubmit }) => {
   const handleCalendarClick = (hour) => {
     setCurrentHour(hour);
     setShowForm(true);
+    setEventDrawer(true);
   };
 
   const handleInputChange = (e) => {
@@ -89,6 +92,8 @@ export const Calendar = ({ events, onSubmit }) => {
           </div>
         ))}
       </div>
+
+      <EventDrawer opened={eventDrawer} onClose={() => setEventDrawer(false)} />
 
       {showForm && (
         <form className="event-form" onSubmit={handleSubmit}>

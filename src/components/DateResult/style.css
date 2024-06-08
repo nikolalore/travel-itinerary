@@ -1,4 +1,5 @@
 .background-white {
   background-color: #ffffff;
   min-height: 100vh;
+  padding-top: 10px;
 }
