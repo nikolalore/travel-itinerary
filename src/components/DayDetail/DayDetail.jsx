@@ -37,20 +37,22 @@ const LogoControl = ({ position }) => {
 };
 
 export const DayDetail = () => {
-  const [tripData, setTripData] = useState([]);
+  const [tripData, setTripData] = useState('loading');
 
-  const czechitasPosition = [48.2046794, 16.3682604];
   const { tripId } = useParams();
 
   const fetchDayDetail = async () => {
     const { data } = await supabase
-      .from('calendar_events')
+      .from('trips')
       .select(
-        `trip_id, date, start_time, end_time, name, location, description, trips(country, country_name, coordinates)`,
+        `country, country_name, coordinates,
+     calendar_events(date, start_time, end_time, name, location, description)`,
       )
-      .eq('trip_id', tripId);
-    setTripData(data);
+      .eq('id', tripId);
+    console.log(data[0]);
+    setTripData(data[0]);
   };
+  console.log(tripData);
 
   useEffect(() => {
     fetchDayDetail();
@@ -60,13 +62,17 @@ export const DayDetail = () => {
     fetchDayDetail();
   };
 
+  if (tripData === 'loading') {
+    return <div>Načítám</div>;
+  }
+
   return (
     <div className="background-white">
       <h1>Ahoj tady budou widgety</h1>
-      <Calendar events={tripData} onSubmit={handleSubmit} />
+      <Calendar events={tripData.calendar_events} onSubmit={handleSubmit} />
       <main>
         <MapContainer
-          center={czechitasPosition}
+          center={[tripData.coordinates.y, tripData.coordinates.x]}
           zoom={15}
           scrollWheelZoom={false}
         >
@@ -77,7 +83,7 @@ export const DayDetail = () => {
             url={mapyCzUrl}
           />
           <LogoControl />
-          <Marker position={czechitasPosition}>
+          <Marker position={[tripData.coordinates.y, tripData.coordinates.x]}>
             <Popup>
               <div>
                 <img src={logo} alt="Logo Czechitas" width={100} />

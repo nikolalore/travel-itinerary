@@ -65,6 +65,10 @@ export const Calendar = ({ events, onSubmit }) => {
     onSubmit();
   };
 
+  if (!events) {
+    return null;
+  }
+
   return (
     <div className="calendar">
       <div className="hours">

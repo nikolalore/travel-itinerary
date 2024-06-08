@@ -5,6 +5,7 @@ import { eachDayOfInterval } from 'date-fns';
 import './style.css';
 import { OneDay } from '../OneDay/OneDay';
 import { Header } from '../Header/Header';
+import { DayDetail } from '../DayDetail/DayDetail';
 
 const supabaseUrl = import.meta.env.VITE_DB_URL;
 const supabaseKey = import.meta.env.VITE_API_KEY;
