@@ -6,6 +6,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
+import { Notepad } from '../Notepad/Notepad';
 
 const supabaseUrl = import.meta.env.VITE_DB_URL;
 const supabaseKey = import.meta.env.VITE_API_KEY;
@@ -68,6 +69,7 @@ export const DayDetail = () => {
   return (
     <div className="background-white">
       <h1>Ahoj tady budou widgety</h1>
+      <Notepad />
       <Calendar events={tripData.calendar_events} onSubmit={handleSubmit} />
       <main>
         <MapContainer
