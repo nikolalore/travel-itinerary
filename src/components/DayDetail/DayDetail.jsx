@@ -4,9 +4,7 @@ import 'leaflet/dist/leaflet.css';
 import logo from './img/Czechitas-logo.png';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
-const VITE_WEATHER = 'aZ2usjdVsCxSuCn61JOrElVVMPLiDq6VSc06alcisc4';
-
-const mapyCzUrl = `https://api.mapy.cz/v1/maptiles/basic/256/{z}/{x}/{y}?apikey=${VITE_WEATHER}`;
+const mapyCzUrl = `https://api.mapy.cz/v1/maptiles/basic/256/{z}/{x}/{y}?apikey=${VITE_MAP}`;
 
 const POSITION_CLASSES = {
   bottomleft: 'leaflet-bottom leaflet-left',
