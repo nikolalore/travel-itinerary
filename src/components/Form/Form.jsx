@@ -51,6 +51,7 @@ export const Form = () => {
           end_date: formattedEndDate,
           country: formattedCountry,
           coordinates: countryData.capitalCoords,
+          country_name: countryData.name.toString(),
         },
       ])
       .select(); //select() vrací hodnoty vložené do databáze tak, abychom z nich mohli vytáhnout id

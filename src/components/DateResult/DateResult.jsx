@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
-import { eachDayOfInterval } from 'date-fns';
+import { eachDayOfInterval, formatDate } from 'date-fns';
 import './style.css';
 import { OneDay } from '../OneDay/OneDay';
 import { Header } from '../Header/Header';
@@ -18,6 +18,7 @@ export const DateResult = () => {
   const [endDate, setEndDate] = useState(null);
   const [daysInTrip, setDaysInTrip] = useState([]);
   const [countryCode, setCountryCode] = useState(null);
+  const [countryName, setCountryName] = useState(null);
 
   const options = {
     weekday: 'long',
@@ -34,6 +35,7 @@ export const DateResult = () => {
       setStartDate(data[0].start_date);
       setEndDate(data[0].end_date);
       setCountryCode(data[0].country);
+      setCountryName(data[0].country_name);
     };
 
     fetchTrip();
@@ -54,14 +56,17 @@ export const DateResult = () => {
     return <div>Loading...</div>;
   }
 
+  const formattedStartDate = formatDate(startDate, 'dd.MM.yyyy');
+  const formattedEndDate = formatDate(endDate, 'dd.MM.yyyy');
+
   return (
     trip && (
       <div className="background-white">
         <Header
           countryImage={`/countriesData/img/${countryCode}.jpg`}
-          country={countryCode}
-          startDate={startDate}
-          endDate={endDate}
+          country={countryName}
+          startDate={formattedStartDate}
+          endDate={formattedEndDate}
         />
         <div className="day-list">
           {daysInTrip.map((day, index) => (
