@@ -4,6 +4,7 @@ import './style.css';
 import React from 'react';
 
 import { createClient } from '@supabase/supabase-js';
+import { DayDetail } from '../../components/DayDetail/DayDetail';
 const supabaseUrl = import.meta.env.VITE_DB_URL;
 const supabaseKey = import.meta.env.VITE_API_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);

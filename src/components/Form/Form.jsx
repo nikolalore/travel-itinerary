@@ -39,6 +39,10 @@ export const Form = () => {
     const formattedEndDate = format(endDate, 'yyyy/MM/dd');
     const formattedCountry = selectedCountry.toString();
 
+    const countryData = countriesData.find(
+      (country) => country.code === selectedCountry,
+    );
+
     const { data } = await supabase
       .from('trips')
       .insert([
@@ -46,6 +50,7 @@ export const Form = () => {
           start_date: formattedStartDate,
           end_date: formattedEndDate,
           country: formattedCountry,
+          coordinates: countryData.capitalCoords,
         },
       ])
       .select(); //select() vrací hodnoty vložené do databáze tak, abychom z nich mohli vytáhnout id
