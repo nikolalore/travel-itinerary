@@ -81,29 +81,33 @@ export const Form = () => {
         </div>
         <div>
           <label className="label-date">Zadejte termín vaší dovolené:</label>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <ReactDatePicker
-              locale={cs}
-              dateFormat="dd.MM.yyyy"
-              selected={startDate}
-              onChange={handleStartDate}
-              selectsStart
-              startDate={startDate}
-              endDate={endDate}
-              placeholderText="Začátek"
-            />
-            <span style={{ margin: '0 10px' }}>do</span>
-            <ReactDatePicker
-              locale={cs}
-              dateFormat="dd.MM.yyyy"
-              selected={endDate}
-              onChange={handleEndDate}
-              selectsEnd
-              startDate={startDate}
-              endDate={endDate}
-              minDate={startDate}
-              placeholderText="Konec"
-            />
+          <div className="date-container">
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <ReactDatePicker
+                locale={cs}
+                dateFormat="dd.MM.yyyy"
+                selected={startDate}
+                onChange={handleStartDate}
+                selectsStart
+                startDate={startDate}
+                endDate={endDate}
+                placeholderText="Začátek"
+                className="date-picker"
+              />
+              <span style={{ margin: '0 10px' }}>do</span>
+              <ReactDatePicker
+                locale={cs}
+                dateFormat="dd.MM.yyyy"
+                selected={endDate}
+                onChange={handleEndDate}
+                selectsEnd
+                startDate={startDate}
+                endDate={endDate}
+                minDate={startDate}
+                placeholderText="Konec"
+                className="date-picker"
+              />
+            </div>
           </div>
         </div>
         <div className="button-container">
