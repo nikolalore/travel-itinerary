@@ -5,12 +5,8 @@ import logo from './img/Czechitas-logo.png';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { createClient } from '@supabase/supabase-js';
 import { Notepad } from '../Notepad/Notepad';
-
-const supabaseUrl = import.meta.env.VITE_DB_URL;
-const supabaseKey = import.meta.env.VITE_API_KEY;
-const supabase = createClient(supabaseUrl, supabaseKey);
+import { supabase } from '../../db';
 
 const { VITE_MAP } = import.meta.env;
 

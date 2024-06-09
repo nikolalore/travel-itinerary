@@ -1,15 +1,10 @@
 import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import { createClient } from '@supabase/supabase-js';
 import { eachDayOfInterval, formatDate } from 'date-fns';
 import './style.css';
 import { OneDay } from '../OneDay/OneDay';
 import { Header } from '../Header/Header';
-import { DayDetail } from '../DayDetail/DayDetail';
-
-const supabaseUrl = import.meta.env.VITE_DB_URL;
-const supabaseKey = import.meta.env.VITE_API_KEY;
-const supabase = createClient(supabaseUrl, supabaseKey);
+import { supabase } from '../../db';
 
 export const DateResult = () => {
   const { id } = useParams(); //můžu do URL cesty vložit proměnnou

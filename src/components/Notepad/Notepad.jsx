@@ -1,13 +1,9 @@
 import './style.css';
 import React, { useState } from 'react';
-
-import { createClient } from '@supabase/supabase-js';
-const supabaseUrl = import.meta.env.VITE_DB_URL;
-const supabaseKey = import.meta.env.VITE_API_KEY;
-const supabase = createClient(supabaseUrl, supabaseKey);
+import { supabase } from '../../db';
 
 export const Notepad = ({ onSubmit, tripId, content }) => {
-  const [notepadContent, setNotepadContent] = useState('');
+  const [notepadContent, setNotepadContent] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();

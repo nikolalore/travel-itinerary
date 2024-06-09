@@ -7,11 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import { format } from 'date-fns';
 import { countriesData } from '../../../public/countriesData/countriesData';
-
-import { createClient } from '@supabase/supabase-js';
-const supabaseUrl = import.meta.env.VITE_DB_URL;
-const supabaseKey = import.meta.env.VITE_API_KEY;
-const supabase = createClient(supabaseUrl, supabaseKey);
+import { supabase } from '../../db';
 
 export const Form = () => {
   const [startDate, setStartDate] = useState(null);

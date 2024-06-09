@@ -1,4 +1,8 @@
 body {
+  font-size: 30px;
+}
+
+.homepage {
   background-image: linear-gradient(rgba(0, 0, 0, 0.55),
       rgba(0, 0, 0, 0.3)), url("./img/background.jpg");
   background-position: center;
@@ -6,7 +10,7 @@ body {
   background-repeat: no-repeat;
   min-height: 100vh;
   height: 100%;
-  font-size: 30px;
+ 
 }
 
 .content {

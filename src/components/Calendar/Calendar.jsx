@@ -1,15 +1,11 @@
 import './style.css';
-import React, { useEffect, useState } from 'react';
-import { createClient } from '@supabase/supabase-js';
+import React, { useState } from 'react';
 import { format } from 'date-fns';
 import { useParams } from 'react-router-dom';
 import { Event } from '../Event/Event';
 import { EventDrawer } from '../EventDrawer/EventDrawer';
 import { createPortal } from 'react-dom';
-
-const supabaseUrl = import.meta.env.VITE_DB_URL;
-const supabaseKey = import.meta.env.VITE_API_KEY;
-const supabase = createClient(supabaseUrl, supabaseKey);
+import { supabase } from '../../db';
 
 export const Calendar = ({ events, onRefreshEvents }) => {
   const [selectedEvent, setSelectedEvent] = useState(null);

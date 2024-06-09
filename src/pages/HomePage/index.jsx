@@ -1,13 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Form } from '../../components/Form/Form';
 import './style.css';
 import React from 'react';
 
-import { createClient } from '@supabase/supabase-js';
-import { DayDetail } from '../../components/DayDetail/DayDetail';
-const supabaseUrl = import.meta.env.VITE_DB_URL;
-const supabaseKey = import.meta.env.VITE_API_KEY;
-const supabase = createClient(supabaseUrl, supabaseKey);
 
 export const HomePage = () => {
   const [isFormVisible, setFormVisible] = useState(false);
@@ -17,6 +12,7 @@ export const HomePage = () => {
   };
 
   return (
+    <div className='homepage'>
     <div className="content">
       <h1>Naplánujte si svou ideální dovolenou</h1>
       <h2>
@@ -31,6 +27,7 @@ export const HomePage = () => {
 
         {isFormVisible && <Form />}
       </div>
+    </div>
     </div>
   );
 };
