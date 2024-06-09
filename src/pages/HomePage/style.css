@@ -56,17 +56,19 @@
   font-family: "Poppins", sans-serif;
 }
 
-@media (min-width: 1024px) {
+.content-transition {
+  transition: 0.5s ease-in-out;
+  transform: translateY(-90px)
+}
+
+
+
+@media (max-width: 1024px) {
   .content {
     padding-top: 100px;
     padding-left: 20px;
     padding-right: 20px;
     max-width: 900px;
-  }
-
-  .content-transition {
-    transition: 0.5s ease-in-out;
-    transform: translateY(-90px)
   }
 
   .content h1 {
@@ -85,6 +87,11 @@
     max-width: 600px;
   }
 
+  .content-transition {
+    transition: none;
+    transform: none;
+  }
+
   .content h1 {
     font-size: 2.5em;
   }
@@ -94,6 +101,11 @@
   .content {
     padding-top: 50px;
     max-width: 320px;
+  }
+
+  .content-transition {
+    transition: none;
+    transform: none;
   }
 
   .content h1 {
