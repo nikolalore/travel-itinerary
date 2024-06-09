@@ -26,7 +26,7 @@ export const EventDrawer = ({ data, onClose, onChange, onSubmit }) => {
             Čas od:
             <input
               type="time"
-              name="startTime"
+              name="start_time"
               value={data.event.start_time}
               onChange={handleInputChange}
             />
@@ -35,7 +35,7 @@ export const EventDrawer = ({ data, onClose, onChange, onSubmit }) => {
             Čas do:
             <input
               type="time"
-              name="endTime"
+              name="end_time"
               value={data.event.end_time}
               onChange={handleInputChange}
             />

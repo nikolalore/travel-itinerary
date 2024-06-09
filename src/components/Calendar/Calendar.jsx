@@ -28,8 +28,8 @@ export const Calendar = ({ events, onRefreshEvents }) => {
       .from('calendar_events')
       .update([
         {
-          start_time: newEvent.startTime,
-          end_time: newEvent.endTime,
+          start_time: newEvent.start_time,
+          end_time: newEvent.end_time,
           name: newEvent.name,
           location: newEvent.location,
           description: newEvent.description,
@@ -45,18 +45,53 @@ export const Calendar = ({ events, onRefreshEvents }) => {
     return null;
   }
 
+  const insertEvent = async (newEvent) => {
+    const { data } = await supabase
+      .from('calendar_events')
+      .insert([
+        {
+          start_time: newEvent.start_time,
+          end_time: newEvent.end_time,
+          name: newEvent.name,
+          location: newEvent.location,
+          description: newEvent.description,
+          trip_id: tripId,
+          date: formattedDate,
+        },
+      ])
+      .select();
+  };
+
   const handleSubmit = async () => {
-    await updateEvent(drawerData.event);
+    console.log(drawerData);
+    if (drawerData.action === 'insert') {
+      await insertEvent(drawerData.event);
+    } else {
+      await updateEvent(drawerData.event);
+    }
+
     setDrawerData(null);
     onRefreshEvents();
   };
-  console.log(drawerData);
+
+  const handleNewEvent = () => {
+    setDrawerData({
+      action: 'insert',
+      event: {
+        start_time: '',
+        end_time: '',
+        name: 'Sem napište název akce',
+        location: '',
+        description: '',
+      },
+    });
+  };
 
   return (
     <>
       <div className="calendar-headline">{formattedFullDate}</div>
       <div className="calendar">
-        <button>Přidat</button>
+        <button onClick={handleNewEvent}>Přidat</button>
         <div className="hours">
           {Array.from({ length: 24 }, (_, i) => (
             <div
