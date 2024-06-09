@@ -9,12 +9,20 @@
 
 .widgets {
   display: flex;
+  /* justify-content: space-between; */
+  padding: 20px 40px 20px 40px;
+
+  margin-top: 30px;
 }
 
 .widgets-top {
   display: flex;
+  margin-bottom: 20px;
+
 }
 
 .leaflet-container.leaflet-touch-drag.leaflet-touch-zoom {
   height: 300px;
+  max-width: 600px;
+  margin-left: 50px;
 }
