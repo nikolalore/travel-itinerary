@@ -1,5 +1,5 @@
 import './style.css';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { format } from 'date-fns';
 import { useParams } from 'react-router-dom';
 import { Event } from '../Event/Event';
@@ -9,6 +9,7 @@ import { supabase } from '../../db';
 
 export const Calendar = ({ events, onRefreshEvents }) => {
   const [drawerData, setDrawerData] = useState(null);
+  const eightOclockRef = useRef(null)
 
   const options = {
     weekday: 'long',
@@ -16,6 +17,13 @@ export const Calendar = ({ events, onRefreshEvents }) => {
     month: 'long',
     day: 'numeric',
   };
+
+  useEffect(() => {
+
+    if (eightOclockRef.current) {
+      eightOclockRef.current.scrollIntoView({behavio: "smooth"})
+    }
+  }, [])
 
   const { tripId } = useParams();
   const { date } = useParams();
@@ -99,6 +107,7 @@ export const Calendar = ({ events, onRefreshEvents }) => {
               key={i}
               className="hour"
               onClick={() => handleCalendarClick(i)}
+              ref={i === 8 ? eightOclockRef : null}
             >
               {i < 10 ? `0${i}:00` : `${i}:00`}
               <span> </span>
