@@ -4,12 +4,15 @@
   box-sizing: border-box;
 }
 
-html {
-  font-family: 'Open Sans', sans-serif;
+:root {
+  --primary-blue: #01779B;
+  --border-radius-btn: 20px;
 }
 
-.container {
-  max-width: 26rem;
-  margin-right: auto;
-  margin-left: auto;
+html {
+  font-family: "Poppins", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 25px;
 }

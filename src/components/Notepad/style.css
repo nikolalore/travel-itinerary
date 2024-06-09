@@ -12,7 +12,6 @@
   overflow: hidden;
   background-color: #FFF;
   color: #222;
-  font-family: "Inter", sans-serif;
   font-size: 24px;
   resize: none;
   line-height: 40px;
@@ -29,7 +28,6 @@
   margin-top: 5px;
   height: 40px;
   padding: 0 24px;
-  font-family: "Inter", sans-serif;
   font-size: 20px;
   color: #FFF;
   border-radius: 8px;
