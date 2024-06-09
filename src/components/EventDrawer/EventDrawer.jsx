@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import './style.css';
 
 export const EventDrawer = ({ data, onClose, onChange, onSubmit }) => {
@@ -12,6 +11,8 @@ export const EventDrawer = ({ data, onClose, onChange, onSubmit }) => {
       event: { ...data.event, [e.target.name]: e.target.value },
     });
   };
+
+  console.log('tady jsou data', data);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,11 +61,11 @@ export const EventDrawer = ({ data, onClose, onChange, onSubmit }) => {
           </label>
           <label>
             Popis:
-            <input
-              type="text"
+            <textarea
               name="description"
               value={data.event.description}
               onChange={handleInputChange}
+              className="large-input"
             />
           </label>
           <button type="submit">Uložit</button>

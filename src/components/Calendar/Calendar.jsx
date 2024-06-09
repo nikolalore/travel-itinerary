@@ -63,7 +63,6 @@ export const Calendar = ({ events, onRefreshEvents }) => {
   };
 
   const handleSubmit = async () => {
-    console.log(drawerData);
     if (drawerData.action === 'insert') {
       await insertEvent(drawerData.event);
     } else {
@@ -91,7 +90,9 @@ export const Calendar = ({ events, onRefreshEvents }) => {
     <>
       <div className="calendar-headline">{formattedFullDate}</div>
       <div className="calendar">
-        <button onClick={handleNewEvent}>Přidat</button>
+        <button className="add-btn" onClick={handleNewEvent}>
+          +
+        </button>
         <div className="hours">
           {Array.from({ length: 24 }, (_, i) => (
             <div
@@ -100,7 +101,7 @@ export const Calendar = ({ events, onRefreshEvents }) => {
               onClick={() => handleCalendarClick(i)}
             >
               {i < 10 ? `0${i}:00` : `${i}:00`}
-              <span></span>
+              <span> </span>
             </div>
           ))}
         </div>
