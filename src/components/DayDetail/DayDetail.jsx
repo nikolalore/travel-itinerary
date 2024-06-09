@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Notepad } from '../Notepad/Notepad';
 import { supabase } from '../../db';
+import { Weather } from '../Weather/Weather';
 
 const { VITE_MAP } = import.meta.env;
 
@@ -69,6 +70,11 @@ export const DayDetail = () => {
   return (
     <div className="background-white">
       <h1>Ahoj, tady už se objevují widgety</h1>
+      <Weather
+        date={date}
+        coordinatesY={tripData.coordinates.y}
+        coordinatesX={tripData.coordinates.x}
+      />
       <Notepad
         onSubmit={handleSubmit}
         tripId={tripId}
