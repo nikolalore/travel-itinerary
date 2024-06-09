@@ -56,7 +56,7 @@ export const DateResult = () => {
 
   return (
     trip && (
-      <div className="background-white">
+      <div className="background">
         <Header
           countryImage={`/countriesData/img/${countryCode}.jpg`}
           country={countryName}
