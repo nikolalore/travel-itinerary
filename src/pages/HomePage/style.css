@@ -42,10 +42,6 @@
   margin-bottom: 2rem;
 }
 
-.content-transition {
-  transition: 0.5s ease-in-out;
-  transform: translateY(-90px)
-}
 
 .btn-plan {
   all: initial;
@@ -60,12 +56,17 @@
   font-family: "Poppins", sans-serif;
 }
 
-@media (max-width: 1024px) {
+@media (min-width: 1024px) {
   .content {
     padding-top: 100px;
     padding-left: 20px;
     padding-right: 20px;
     max-width: 900px;
+  }
+
+  .content-transition {
+    transition: 0.5s ease-in-out;
+    transform: translateY(-90px)
   }
 
   .content h1 {

@@ -60,21 +60,23 @@ label {
 
 
 
-@media (max-width: 720px) {
-  .form-container {
-    max-width: 650px;
-  }
-}
 
-@media (max-width: 480px) {
+@media (max-width: 767px) {
   .form-container {
-    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    max-width: 250px;
+    font-size: 1rem;
   }
-}
 
-@media (max-width: 360px) {
-  .form-container {
-    max-width: 300px;
+  .responsive-layer {
+    display: flex;
+    flex-direction: column;
+    width: 210px
+  }
+
+  #responsive-option {
+    width: 300px;
   }
 
   .date-container {

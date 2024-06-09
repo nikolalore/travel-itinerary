@@ -73,7 +73,11 @@ export const Form = () => {
           >
             <option value="">Vyberte</option>
             {countriesData.map((country) => (
-              <option key={country.code} value={country.code}>
+              <option
+                id="responsive-option"
+                key={country.code}
+                value={country.code}
+              >
                 {country.name}
               </option>
             ))}
@@ -82,7 +86,10 @@ export const Form = () => {
         <div>
           <label className="label-date">Zadejte termín vaší dovolené:</label>
           <div className="date-container">
-            <div style={{ display: 'flex', alignItems: 'center' }}>
+            <div
+              className="responsive-layer"
+              style={{ display: 'flex', alignItems: 'center' }}
+            >
               <ReactDatePicker
                 locale={cs}
                 dateFormat="dd.MM.yyyy"
@@ -91,10 +98,10 @@ export const Form = () => {
                 selectsStart
                 startDate={startDate}
                 endDate={endDate}
-                placeholderText="Začátek"
+                placeholderText="Od"
                 className="date-picker"
               />
-              <span style={{ margin: '0 10px' }}>do</span>
+              <span style={{ margin: '10px 10px' }}></span>
               <ReactDatePicker
                 locale={cs}
                 dateFormat="dd.MM.yyyy"
@@ -104,7 +111,7 @@ export const Form = () => {
                 startDate={startDate}
                 endDate={endDate}
                 minDate={startDate}
-                placeholderText="Konec"
+                placeholderText="Do"
                 className="date-picker"
               />
             </div>
