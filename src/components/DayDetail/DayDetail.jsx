@@ -47,7 +47,7 @@ export const DayDetail = () => {
       .from('trips')
       .select(
         `country, country_name, coordinates,notepad_content,
-     calendar_events(date, start_time, end_time, name, location, description)`,
+     calendar_events(id, date, start_time, end_time, name, location, description)`,
       )
       .eq('id', tripId)
       .eq('calendar_events.date', date);
@@ -66,6 +66,10 @@ export const DayDetail = () => {
     return <div>Načítám</div>;
   }
 
+  const handleRefreshEvents = () => {
+    fetchDayDetail();
+  };
+
   return (
     <div className="background-white">
       <h1>Ahoj, tady už se objevují widgety</h1>
@@ -74,7 +78,11 @@ export const DayDetail = () => {
         tripId={tripId}
         content={tripData.notepad_content}
       />
-      <Calendar events={tripData.calendar_events} onSubmit={handleSubmit} />
+      <Calendar
+        events={tripData.calendar_events}
+        onSubmit={handleSubmit}
+        onRefreshEvents={handleRefreshEvents}
+      />
       <main>
         <MapContainer
           center={[tripData.coordinates.y, tripData.coordinates.x]}

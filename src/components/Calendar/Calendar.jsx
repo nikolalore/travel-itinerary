@@ -11,7 +11,7 @@ const supabaseUrl = import.meta.env.VITE_DB_URL;
 const supabaseKey = import.meta.env.VITE_API_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-export const Calendar = ({ events }) => {
+export const Calendar = ({ events, onRefreshEvents }) => {
   const [selectedEvent, setSelectedEvent] = useState(null);
 
   const options = {
@@ -27,20 +27,21 @@ export const Calendar = ({ events }) => {
   const tripDate = new Date(date);
   const formattedFullDate = tripDate.toLocaleDateString('cs-CZ', options);
 
-  const addEvent = async (newEvent) => {
+  const updateEvent = async (newEvent) => {
     const { data } = await supabase
       .from('calendar_events')
-      .insert([
+      .update([
         {
           start_time: newEvent.startTime,
           end_time: newEvent.endTime,
-          name: newEvent.name.toString(),
-          location: formData.location.toString(),
-          description: formData.description.toString(),
+          name: newEvent.name,
+          location: newEvent.location,
+          description: newEvent.description,
           trip_id: tripId,
           date: formattedDate,
         },
       ])
+      .eq('id', newEvent.id)
       .select();
   };
 
@@ -49,7 +50,9 @@ export const Calendar = ({ events }) => {
   }
 
   const handleSubmit = () => {
-    console.log(selectedEvent);
+    updateEvent(selectedEvent);
+    setSelectedEvent(null);
+    onRefreshEvents();
   };
 
   return (
