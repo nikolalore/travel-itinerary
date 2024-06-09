@@ -8,7 +8,7 @@ import { createPortal } from 'react-dom';
 import { supabase } from '../../db';
 
 export const Calendar = ({ events, onRefreshEvents }) => {
-  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [drawerData, setDrawerData] = useState(null);
 
   const options = {
     weekday: 'long',
@@ -45,16 +45,18 @@ export const Calendar = ({ events, onRefreshEvents }) => {
     return null;
   }
 
-  const handleSubmit = () => {
-    updateEvent(selectedEvent);
-    setSelectedEvent(null);
+  const handleSubmit = async () => {
+    await updateEvent(drawerData.event);
+    setDrawerData(null);
     onRefreshEvents();
   };
+  console.log(drawerData);
 
   return (
     <>
       <div className="calendar-headline">{formattedFullDate}</div>
       <div className="calendar">
+        <button>Přidat</button>
         <div className="hours">
           {Array.from({ length: 24 }, (_, i) => (
             <div
@@ -70,9 +72,9 @@ export const Calendar = ({ events, onRefreshEvents }) => {
 
         {createPortal(
           <EventDrawer
-            event={selectedEvent}
-            onClose={() => setSelectedEvent(null)}
-            onChange={(e) => setSelectedEvent(e)}
+            data={drawerData}
+            onClose={() => setDrawerData(null)}
+            onChange={(e) => setDrawerData(e)}
             onSubmit={handleSubmit}
           />,
           document.body,
@@ -82,7 +84,9 @@ export const Calendar = ({ events, onRefreshEvents }) => {
           {events.map((event, index) => (
             <div>
               <Event
-                onOpen={() => setSelectedEvent(events[index])}
+                onOpen={() =>
+                  setDrawerData({ action: 'update', event: events[index] })
+                }
                 key={index}
                 name={event.name}
                 description={event.description}

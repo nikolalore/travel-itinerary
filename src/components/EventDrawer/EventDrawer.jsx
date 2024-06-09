@@ -1,30 +1,16 @@
 import { useState } from 'react';
 import './style.css';
 
-export const EventDrawer = ({ event, onClose, onChange, onSubmit }) => {
-  if (event === null) {
+export const EventDrawer = ({ data, onClose, onChange, onSubmit }) => {
+  if (data === null) {
     return null;
   }
 
-  const updateEvents = async (event) => {
-    const { data } = await supabase
-      .from('calendar_events')
-      .update([
-        {
-          start_time: newEvent.startTime,
-          end_time: newEvent.endTime,
-          name: newEvent.name.toString(),
-          location: formData.location.toString(),
-          description: formData.description.toString(),
-          trip_id: tripId,
-          date: formattedDate,
-        },
-      ])
-      .select();
-  };
-
   const handleInputChange = (e) => {
-    onChange({ ...event, [e.target.name]: e.target.value });
+    onChange({
+      action: data.action,
+      event: { ...data.event, [e.target.name]: e.target.value },
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -41,7 +27,7 @@ export const EventDrawer = ({ event, onClose, onChange, onSubmit }) => {
             <input
               type="time"
               name="startTime"
-              value={event.start_time}
+              value={data.event.start_time}
               onChange={handleInputChange}
             />
           </label>
@@ -50,7 +36,7 @@ export const EventDrawer = ({ event, onClose, onChange, onSubmit }) => {
             <input
               type="time"
               name="endTime"
-              value={event.end_time}
+              value={data.event.end_time}
               onChange={handleInputChange}
             />
           </label>
@@ -59,7 +45,7 @@ export const EventDrawer = ({ event, onClose, onChange, onSubmit }) => {
             <input
               type="text"
               name="name"
-              value={event.name}
+              value={data.event.name}
               onChange={handleInputChange}
             />
           </label>
@@ -68,7 +54,7 @@ export const EventDrawer = ({ event, onClose, onChange, onSubmit }) => {
             <input
               type="text"
               name="location"
-              value={event.location}
+              value={data.event.location}
               onChange={handleInputChange}
             />
           </label>
@@ -77,7 +63,7 @@ export const EventDrawer = ({ event, onClose, onChange, onSubmit }) => {
             <input
               type="text"
               name="description"
-              value={event.description}
+              value={data.event.description}
               onChange={handleInputChange}
             />
           </label>

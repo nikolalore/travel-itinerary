@@ -55,10 +55,6 @@ export const DayDetail = () => {
     fetchDayDetail();
   }, []);
 
-  const handleSubmit = () => {
-    fetchDayDetail();
-  };
-
   if (tripData === 'loading') {
     return <div>Načítám</div>;
   }
@@ -76,13 +72,12 @@ export const DayDetail = () => {
         coordinatesX={tripData.coordinates.x}
       />
       <Notepad
-        onSubmit={handleSubmit}
+        onSubmit={handleRefreshEvents}
         tripId={tripId}
         content={tripData.notepad_content}
       />
       <Calendar
         events={tripData.calendar_events}
-        onSubmit={handleSubmit}
         onRefreshEvents={handleRefreshEvents}
       />
       <main>
