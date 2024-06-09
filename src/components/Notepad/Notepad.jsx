@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { supabase } from '../../db';
 
 export const Notepad = ({ onSubmit, tripId, content }) => {
-  const [notepadContent, setNotepadContent] = useState("");
+  const [notepadContent, setNotepadContent] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,14 +16,13 @@ export const Notepad = ({ onSubmit, tripId, content }) => {
       ])
       .eq('id', tripId);
     onSubmit();
-   
   };
-  console.log(content)
+  console.log(content);
   return (
     <div className="notepad">
       <form>
         <textarea
-        value={content}
+          defaultValue={content}
           onChange={(e) => setNotepadContent(e.target.value)}
           placeholder="&#10;Místo pro poznámky..."
           className="text"

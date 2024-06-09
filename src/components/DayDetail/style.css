@@ -6,3 +6,15 @@
 .leaflet-container {
   height: 400px;
 }
+
+.widgets {
+  display: flex;
+}
+
+.widgets-top {
+  display: flex;
+}
+
+.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom {
+  height: 300px;
+}
