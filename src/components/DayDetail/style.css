@@ -9,20 +9,44 @@
 
 .widgets {
   display: flex;
-  /* justify-content: space-between; */
+  /* justify-content: space-around; */
   padding: 20px 40px 20px 40px;
+  margin-top: 5%;
+}
 
-  margin-top: 30px;
+.widgets-right {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .widgets-top {
   display: flex;
+  flex-direction: row;
   margin-bottom: 20px;
+}
+
+.widgets-weather {
+  display: flex;
+  margin: 0px 20px 20px 20px;
+
 
 }
 
+.widgets-calendar {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+
+.widgets-map {
+  display: flex;
+  width: 100%
+}
+
 .leaflet-container.leaflet-touch-drag.leaflet-touch-zoom {
-  height: 300px;
-  max-width: 600px;
+  height: 350px;
+  width: 100%;
   margin-left: 50px;
+  border-radius: 20px;
 }

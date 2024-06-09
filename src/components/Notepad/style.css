@@ -8,7 +8,7 @@
 }
 
 .text {
-  width: 500px;
+  width: 100%;
   overflow: hidden;
   background-color: #FFF;
   color: #222;
@@ -24,8 +24,8 @@
 }
 
 .notepad-button {
+  all: initial;
   cursor: pointer;
-  margin-top: 5px;
   height: 40px;
   padding: 0 24px;
   font-family: "Inter", sans-serif;
@@ -34,6 +34,7 @@
   border-radius: 8px;
   background-color: #01779B;
   align-self: flex-start;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .notepad-button:active,

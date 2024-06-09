@@ -65,8 +65,7 @@ export const DayDetail = () => {
 
   return (
     <div className="background-white">
-      <div className='widgets'>
-      
+      <div className="widgets">
         <div className="widgets-calendar">
           <Calendar
             events={tripData.calendar_events}
@@ -74,43 +73,46 @@ export const DayDetail = () => {
           />
         </div>
         <div className="widgets-right">
-        <div className="widgets-top">
-          <Notepad
-            onSubmit={handleRefreshEvents}
-            tripId={tripId}
-            content={tripData.notepad_content}
-          />
-    
-          <Weather
-            date={date}
-            coordinatesY={tripData.coordinates.y}
-            coordinatesX={tripData.coordinates.x}
-          />
-        </div>
-        <div className="widgets-map">
-          <MapContainer
-            center={[tripData.coordinates.y, tripData.coordinates.x]}
-            zoom={15}
-            scrollWheelZoom={false}
-          >
-            <TileLayer
-              minZoom={0}
-              maxZoom={19}
-              attribution='<a href="https://api.mapy.cz/copyright" target="_blank">© Seznam.cz a.s. a další</a>'
-              url={mapyCzUrl}
+          <div className="widgets-top">
+            <Notepad
+              onSubmit={handleRefreshEvents}
+              tripId={tripId}
+              content={tripData.notepad_content}
             />
-            <LogoControl />
-            <Marker position={[tripData.coordinates.y, tripData.coordinates.x]}>
-              <Popup>
-                <div>
-                  <img src={logo} alt="Logo Czechitas" width={100} />
-                </div>
-              </Popup>
-            </Marker>
-          </MapContainer>
+            <div className="widgets-weather">
+              <Weather
+                date={date}
+                coordinatesY={tripData.coordinates.y}
+                coordinatesX={tripData.coordinates.x}
+              />
+            </div>
+          </div>
+          <div className="widgets-map">
+            <MapContainer
+              center={[tripData.coordinates.y, tripData.coordinates.x]}
+              zoom={15}
+              scrollWheelZoom={false}
+            >
+              <TileLayer
+                minZoom={0}
+                maxZoom={19}
+                attribution='<a href="https://api.mapy.cz/copyright" target="_blank">© Seznam.cz a.s. a další</a>'
+                url={mapyCzUrl}
+              />
+              <LogoControl />
+              <Marker
+                position={[tripData.coordinates.y, tripData.coordinates.x]}
+              >
+                <Popup>
+                  <div>
+                    <img src={logo} alt="Logo Czechitas" width={100} />
+                  </div>
+                </Popup>
+              </Marker>
+            </MapContainer>
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 };
