@@ -12,7 +12,6 @@ export const EventDrawer = ({ data, onClose, onChange, onSubmit }) => {
     });
   };
 
-  console.log('tady jsou data', data);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

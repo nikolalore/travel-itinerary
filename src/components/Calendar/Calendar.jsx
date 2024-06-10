@@ -87,7 +87,7 @@ export const Calendar = ({ events, onRefreshEvents }) => {
       event: {
         start_time: '',
         end_time: '',
-        name: 'Sem napište název akce',
+        name: '',
         location: '',
         description: '',
       },
