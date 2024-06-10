@@ -1,6 +1,6 @@
 .day-button {
-  display: flex;
-  justify-content: center;
+  /* display: flex;
+  justify-content: center; */
   margin: 0.5rem;
   padding: 20px;
   width: 50%;
@@ -13,6 +13,7 @@
   box-shadow: 0 1.5px 3px rgba(0, 0, 0, 0.117);
   font-family: 'Poppins', sans-serif;
   font-size: 1.5rem;
+  position: relative;
 }
 
 .day-button:hover {
@@ -26,7 +27,27 @@
   align-items: center;
 }
 
+.day-number {
+  font-size: 1rem;
+  text-align: left;
+  color: #616567db;
+}
 
+.day-arrow-icon {
+  height: 2rem;
+  width: 2rem;
+  transition: transform 0.3s ease;
+}
+
+.day-button:hover .day-arrow-icon {
+  transform: translateX(5px);
+}
+
+.day-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
 
 @media (max-width: 1024px) {

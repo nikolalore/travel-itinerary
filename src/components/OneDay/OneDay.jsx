@@ -3,7 +3,7 @@ import './style.css';
 import { useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
 
-export const OneDay = ({ day, options, tripId }) => {
+export const OneDay = ({ day, options, tripId, number }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -13,7 +13,19 @@ export const OneDay = ({ day, options, tripId }) => {
 
   return (
     <button className="day-button" onClick={handleClick}>
-      {day.toLocaleDateString('cs-CZ', options)}
+      <div className="day-number"> Den {number}</div>
+      <div className="day-flex">
+        <div className="day-date">
+          {day.toLocaleDateString('cs-CZ', options)}
+        </div>
+        <div className="day-arrow">
+          <img
+            src={`/img/arrow.png`}
+            alt="arrow"
+            className="day-arrow-icon"
+          />
+        </div>
+      </div>
     </button>
   );
 };

@@ -65,7 +65,7 @@ export const DateResult = () => {
         />
         <div className="day-list">
           {daysInTrip.map((day, index) => (
-            <OneDay key={index} day={day} options={options} tripId={id} />
+            <OneDay key={index} day={day} options={options} tripId={id} number={index + 1}/>
           ))}
         </div>
       </div>
