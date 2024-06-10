@@ -13,9 +13,9 @@ export const HomePage = () => {
   return (
     <div className="homepage">
       <div className = {!isFormVisible? "content" : "content content-transition"}>
-        <h1>Naplánujte si svou ideální dovolenou</h1>
+        <h1>Planorama</h1>
         <h2>
-          Vytvořte si vlastní cestovní itinerář a plánujte snadno a přehledně.
+          Vytvořte si vlastní cestovní itinerář a náplánujte si svou ideální dovolenou.
         </h2>
         <div id="form">
           {!isFormVisible && (
