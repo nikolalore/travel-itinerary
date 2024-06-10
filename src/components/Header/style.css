@@ -46,6 +46,11 @@ html {
 
 
 @media (max-width: 768px) {
+
+  .header {
+    height: 200px;
+  }
+
   .header h1 {
     font-size: 5rem
   }
@@ -55,12 +60,32 @@ html {
   }
 }
 
+@media (max-width: 500px) {
+  .header {
+    height: 140px;
+    width: 96%;
+  }
+
+  .header h1 {
+    font-size: 3.5rem
+  }
+
+  .header h2 {
+    font-size: 1.2rem;
+  }
+}
+
 @media (max-width: 360px) {
+  .header {
+    height: 110px;
+
+  }
+
   .header h1 {
     font-size: 3rem
   }
 
   .header h2 {
-    font-size: 1.5rem;
+    font-size: 1.1rem;
   }
 }
