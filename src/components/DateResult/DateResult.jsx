@@ -5,6 +5,7 @@ import './style.css';
 import { OneDay } from '../OneDay/OneDay';
 import { Header } from '../Header/Header';
 import { supabase } from '../../db';
+import { Loading } from '../Loading/Loading';
 
 export const DateResult = () => {
   const { id } = useParams(); //můžu do URL cesty vložit proměnnou
@@ -48,7 +49,7 @@ export const DateResult = () => {
   };
 
   if (!trip) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   const formattedStartDate = formatDate(startDate, 'dd.MM.yyyy');
@@ -65,7 +66,13 @@ export const DateResult = () => {
         />
         <div className="day-list">
           {daysInTrip.map((day, index) => (
-            <OneDay key={index} day={day} options={options} tripId={id} number={index + 1}/>
+            <OneDay
+              key={index}
+              day={day}
+              options={options}
+              tripId={id}
+              number={index + 1}
+            />
           ))}
         </div>
       </div>
