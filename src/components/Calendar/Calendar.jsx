@@ -95,12 +95,14 @@ export const Calendar = ({ events, onRefreshEvents }) => {
   };
 
   return (
-    <>
-      <div className="calendar-headline">{formattedFullDate}</div>
-      <div className="calendar">
-        <button className="add-btn" onClick={handleNewEvent}>
+    <div className='calendar-box'>
+    <div className='calendar-header'>
+      <div className="calendar-headline">Moje aktivity</div>
+      <button className="add-btn" onClick={handleNewEvent}>
           +
         </button>
+      </div>
+      <div className="calendar">
         <div className="hours">
           {Array.from({ length: 24 }, (_, i) => (
             <div
@@ -144,6 +146,6 @@ export const Calendar = ({ events, onRefreshEvents }) => {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };

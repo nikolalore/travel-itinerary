@@ -9,6 +9,7 @@ import { Notepad } from '../Notepad/Notepad';
 import { supabase } from '../../db';
 import { Weather } from '../Weather/Weather';
 import { DayHeader } from '../DayHeader/DayHeader';
+import { differenceInDays } from 'date-fns/differenceInDays';
 
 const { VITE_MAP } = import.meta.env;
 
@@ -37,19 +38,33 @@ const LogoControl = ({ position }) => {
 
 export const DayDetail = () => {
   const [tripData, setTripData] = useState('loading');
-
+  const [dayOfTrip, setDayOfTrip] = useState(null);
   const { tripId, date } = useParams();
+
+  const options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  };
+
+  const tripDate = new Date(date);
+  const formattedDate = tripDate.toLocaleDateString('cs-CZ', options);
 
   const fetchDayDetail = async () => {
     const { data } = await supabase
       .from('trips')
       .select(
-        `country, country_name, coordinates,notepad_content,
+        `country, country_name, coordinates,notepad_content, start_date,
      calendar_events(id, date, start_time, end_time, name, location, description)`,
       )
       .eq('id', tripId)
       .eq('calendar_events.date', date);
     setTripData(data[0]);
+    const currentDate = new Date(date);
+    const startDate = new Date(data[0].start_date);
+    setDayOfTrip(differenceInDays(currentDate, startDate) + 1);
+    console.log(startDate);
   };
 
   useEffect(() => {
@@ -68,8 +83,8 @@ export const DayDetail = () => {
     <div className="background-white">
       <DayHeader
         title={tripData.country_name}
-        day={'Den 3'}
-        formattedDate={"čtvrtek 5. dubna"}
+        day={`Den ${dayOfTrip}`}
+        formattedDate={formattedDate}
         date={date}
         coordinatesY={tripData.coordinates.y}
         coordinatesX={tripData.coordinates.x}
