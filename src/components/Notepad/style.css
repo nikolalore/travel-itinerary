@@ -1,10 +1,9 @@
-
-  .notepad {
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
+.notepad {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
 
 .text {
   width: 100%;
@@ -30,6 +29,7 @@
 .notepad-headline {
   font-size: 1.5rem;
 }
+
 .notepad-button {
   all: initial;
   cursor: pointer;
@@ -47,4 +47,52 @@
 .notepad-button:active,
 .notepad-button:focus {
   opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .notepad {
+    width: 100%
+  }
+
+  .text {
+    height: 250px;
+    width: 100%
+  }
+
+  .notepad-headline {
+    font-size: 1.2rem;
+  }
+
+  .notepad-button {
+    height: 20px;
+    margin-left: 20px;
+    padding: 10px 15px;
+    border-radius: 13px;
+  }
+
+  .text {
+    margin-bottom: 0px;
+  }
+}
+
+@media (max-width: 360px) {
+
+  .text {
+    height: 250px;
+    width: 290px;
+  }
+
+  .notepad {
+    display: flex;
+    align-items: center;
+    width: 290px;
+    /* padding-right: 43px; */
+  }
+
+  .notepad-button {
+    height: 20px;
+    padding: 0 24px;
+    padding: 10px 15px;
+    border-radius: 13px;
+  }
 }

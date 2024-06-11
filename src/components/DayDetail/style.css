@@ -54,3 +54,44 @@
 .widgets-notepad {
   flex: 1
 }
+
+
+@media (max-width: 768px) {
+  .widgets {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+
+
+  .widgets-calendar {
+    width: 100%;
+  }
+
+  .widgets-right {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+    width: 100%;
+  }
+
+  .leaflet-container.leaflet-touch-drag.leaflet-touch-zoom {
+    margin: 0;
+    width: 100%;
+  }
+
+  .widgets-notepad {
+    margin: 20px;
+    width: fit-content;
+  }
+
+  .widgets-map {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .hours {
+    width: 100%;
+  }
+
+}
