@@ -1,37 +1,44 @@
-.notepad {
 
-  height: auto;
-  margin: auto 50px auto;
-  display: flex;
-  flex-direction: column;
-  /* align-items: center; */
-}
+  .notepad {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
 
 .text {
   width: 100%;
   overflow: hidden;
   background-color: #FFF;
   color: #222;
-  font-size: 24px;
+  font-size: 1rem;
   resize: none;
-  line-height: 40px;
-  padding: 0px 100px 34px 100px;
-  background-image: url(/img/notepad_line.png);
-  background-repeat: repeat-y, repeat;
-  border-radius: 12px;
-  border: 1px solid black;
+  padding: 1rem;
+  border-radius: 10px;
   margin-bottom: 10px;
+  box-shadow: 0 1.5px 3px rgba(0, 0, 0, 0.117);
 }
 
+.notepad-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.notepad-headline {
+  font-size: 1.5rem;
+}
 .notepad-button {
   all: initial;
   cursor: pointer;
   height: 40px;
   padding: 0 24px;
-  font-family: "Inter", sans-serif;
-  font-size: 20px;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
   color: #FFF;
-  border-radius: 8px;
+  border-radius: 10px;
   background-color: #01779B;
   align-self: flex-start;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);

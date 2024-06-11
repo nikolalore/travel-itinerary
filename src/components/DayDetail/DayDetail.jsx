@@ -97,7 +97,7 @@ export const DayDetail = () => {
           />
         </div>
         <div className="widgets-right">
-          <div className="widgets-top">
+          <div className="widgets-notepad">
             <Notepad
               onSubmit={handleRefreshEvents}
               tripId={tripId}

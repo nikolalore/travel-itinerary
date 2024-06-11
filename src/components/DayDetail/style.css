@@ -1,7 +1,7 @@
 .background-white {
   background-color: #919ca00f;
   min-height: 100vh;
-  padding-top: 10px;
+  /* padding-top: 10px; */
 }
 
 .leaflet-container {
@@ -10,9 +10,9 @@
 
 .widgets {
   display: flex;
-  /* justify-content: space-around; */
+  justify-content: center;
   padding: 20px 40px 20px 40px;
-  margin-top: 1rem;
+  margin: 1rem;
 }
 
 .widgets-right {
@@ -21,17 +21,15 @@
   flex: 1;
 }
 
-.widgets-top {
+.widgets-notepad {
   display: flex;
   flex-direction: row;
-  margin-bottom: 20px;
+  margin-left: 50px;
 }
 
 .widgets-weather {
   display: flex;
   margin: 0px 20px 20px 20px;
-
-
 }
 
 .widgets-calendar {
@@ -49,5 +47,10 @@
   height: 350px;
   width: 100%;
   margin-left: 50px;
-  border-radius: 20px;
+  border-radius: 10px;
+}
+
+.widgets-map,
+.widgets-notepad {
+  flex: 1
 }
