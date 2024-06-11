@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { Notepad } from '../Notepad/Notepad';
 import { supabase } from '../../db';
 import { Weather } from '../Weather/Weather';
+import { DayHeader } from '../DayHeader/DayHeader';
 
 const { VITE_MAP } = import.meta.env;
 
@@ -65,6 +66,14 @@ export const DayDetail = () => {
 
   return (
     <div className="background-white">
+      <DayHeader
+        title={tripData.country_name}
+        day={'Den 3'}
+        formattedDate={"čtvrtek 5. dubna"}
+        date={date}
+        coordinatesY={tripData.coordinates.y}
+        coordinatesX={tripData.coordinates.x}
+      />
       <div className="widgets">
         <div className="widgets-calendar">
           <Calendar
@@ -79,13 +88,6 @@ export const DayDetail = () => {
               tripId={tripId}
               content={tripData.notepad_content}
             />
-            <div className="widgets-weather">
-              <Weather
-                date={date}
-                coordinatesY={tripData.coordinates.y}
-                coordinatesX={tripData.coordinates.x}
-              />
-            </div>
           </div>
           <div className="widgets-map">
             <MapContainer

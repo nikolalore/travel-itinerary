@@ -1,23 +1,17 @@
 .weather-card {
-  display: flex;
-  flex-direction: column;
+display: flex;
   align-items: center;
-  justify-content: center;
-  width: 200px;
-  height: 160px;
-  background-color: #01779B;
-  border-radius: 10px;
-  padding: 10px;
-  color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-size: 1rem;
+  margin-right: 1.5rem;
 }
 
 .weather-icon {
   width: 50px;
   height: 50px;
+  margin-right: 1.5rem;
 }
 
 .temperature {
-  font-size: 1.5rem;
+  font-size: 2rem;
   margin-top: 10px;
 }
