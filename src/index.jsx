@@ -11,7 +11,7 @@ const router = createBrowserRouter([
     element: <HomePage />,
   },
   {
-    path: '/results/:id',
+    path: '/trip/:id',
     element: <DateResult />,
   },
   {

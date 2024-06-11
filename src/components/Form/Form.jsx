@@ -58,7 +58,7 @@ export const Form = () => {
     // }
 
     const tripId = data[0].id; // tohle je ID vyplněného tripu, [0] získává první položku z vrácených dat, což v tomhle případě odpovídá nově vložené cestě, .id –> získávám konkrétní id z nového tripu
-    navigate(`/results/${tripId}`);
+    navigate(`/trip/${tripId}`);
   };
 
   return (
