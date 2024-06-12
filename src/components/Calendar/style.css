@@ -82,4 +82,9 @@
   .calendar {
     width: 100%;
   }
+
+  .add-btn {
+    width: 30px;
+    height: 30px;
+  }
 }
