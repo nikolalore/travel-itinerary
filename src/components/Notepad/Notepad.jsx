@@ -17,13 +17,13 @@ export const Notepad = ({ onSubmit, tripId, content }) => {
       .eq('id', tripId);
     onSubmit();
   };
-  console.log(content);
+  
   return (
     <div className="notepad">
       <div className="notepad-header">
         <div className="notepad-headline">Poznámky pro celý výlet</div>
         <button className="notepad-button" type="submit" onClick={handleSubmit}>
-          Odeslat
+          Uložit
         </button>
       </div>
       <form>
