@@ -80,6 +80,12 @@
 
 @media (max-width: 360px) {
   .calendar {
-    width: 290px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .calendar {
+    width: 100%;
   }
 }

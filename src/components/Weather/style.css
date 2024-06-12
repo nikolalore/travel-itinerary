@@ -34,3 +34,20 @@
     margin-right: 0.5rem;
   }
 }
+
+@media (max-width: 360px) {
+  .temperature {
+    font-size: 1rem;
+  }
+
+  .weather-card {
+    display: flex;
+
+  }
+
+  .weather-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.5rem;
+  }
+}
