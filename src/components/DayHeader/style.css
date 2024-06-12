@@ -63,6 +63,7 @@
 @media (max-width: 420px) {
   .day-header {
     width: 100%;
+    padding: 3px; /* //zkouška */
   }
 }
 
