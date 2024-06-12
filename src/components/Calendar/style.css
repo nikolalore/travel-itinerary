@@ -78,14 +78,15 @@
 
 
 
-@media (max-width: 360px) {
+@media (max-width: 450px) {
   .calendar {
     width: 100%;
+  }
+
+  .add-btn {
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 1.3rem;
   }
 }
 
-@media (max-width: 768px) {
-  .calendar {
-    width: 100%;
-  }
-}
