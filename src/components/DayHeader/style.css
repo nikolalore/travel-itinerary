@@ -87,25 +87,3 @@
     margin-right: 0.5rem;
   }
 }
-
-/* @media (max-width: 360px) {
-  .day-header {
-    width: 100%;
-     padding: 10px; 
-
-  }
-
-  .day {
-    font-weight: bold;
-    color: #000;
-    margin: 0;
-    font-size: 1rem;
-  }
-
-  .title {
-    margin: 0;
-    font-size: 1rem;
-    font-weight: normal;
-    margin-right: 8px;
-  }
-} */
