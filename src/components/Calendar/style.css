@@ -82,5 +82,8 @@
   .calendar {
     width: 100%;
   }
-}
 
+  .add-btn {
+    padding-right: 5px;
+  }
+}
