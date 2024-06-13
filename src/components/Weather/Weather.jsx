@@ -4,8 +4,8 @@ const { VITE_WEATHER_API_KEY } = import.meta.env;
 
 export const Weather = ({ coordinatesY, coordinatesX, date }) => {
   const [weather, setWeather] = useState({
-    temp: 15, //změnit pak na 0
-    icon: 'clear-day', //změnit pak na prázdný string
+    temp: 0,
+    icon: '',
   });
 
   useEffect(() => {
@@ -17,7 +17,7 @@ export const Weather = ({ coordinatesY, coordinatesX, date }) => {
       setWeather({ temp: data.days[0].temp, icon: data.days[0].icon });
     };
 
-    // fetchWeather(); ODKOMENTOVAT!
+    fetchWeather();
   }, []);
 
   return (
