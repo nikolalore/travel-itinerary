@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import './style.css';
 
 export const EventDrawer = ({ data, onClose, onChange, onSubmit }) => {
+  const [saving, setSaving] = useState(false);
+
   if (data === null) {
     return null;
   }
@@ -8,7 +11,7 @@ export const EventDrawer = ({ data, onClose, onChange, onSubmit }) => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
-    if (name === "location") {
+    if (name === 'location') {
       onChange({
         ...data,
         event: {
@@ -30,10 +33,16 @@ export const EventDrawer = ({ data, onClose, onChange, onSubmit }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!data.event.name) {
-      alert("Název události je povinný.");
+      alert('Název události je povinný.');
       return;
     }
-    onSubmit();
+    setSaving(true); 
+
+    try {
+      await onSubmit();
+    } finally {
+      setSaving(false); 
+    }
   };
 
   return (
@@ -85,7 +94,7 @@ export const EventDrawer = ({ data, onClose, onChange, onSubmit }) => {
               className="large-input"
             />
           </label>
-          <button type="submit">Uložit</button>
+          <button type="submit">{saving ? 'Ukládám...' : 'Uložit'}</button>
         </form>
       </div>
     </div>

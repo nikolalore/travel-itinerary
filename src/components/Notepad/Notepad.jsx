@@ -4,18 +4,25 @@ import { supabase } from '../../db';
 
 export const Notepad = ({ onSubmit, tripId, content }) => {
   const [notepadContent, setNotepadContent] = useState('');
+  const [saving, setSaving] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { data } = await supabase
-      .from('trips')
-      .update([
-        {
-          notepad_content: notepadContent,
-        },
-      ])
-      .eq('id', tripId);
-    onSubmit();
+    setSaving(true); // Nastavit stav na ukládání
+
+    try {
+      await supabase
+        .from('trips')
+        .update([
+          {
+            notepad_content: notepadContent,
+          },
+        ])
+        .eq('id', tripId);
+      onSubmit();
+    } finally {
+      setSaving(false); // Po dokončení ukládání vrátit stav zpět
+    }
   };
   
   return (
@@ -23,7 +30,7 @@ export const Notepad = ({ onSubmit, tripId, content }) => {
       <div className="notepad-header">
         <div className="notepad-headline">Poznámky pro celý výlet</div>
         <button className="notepad-button" type="submit" onClick={handleSubmit}>
-          Uložit
+        {saving ? 'Ukládám...' : 'Uložit'}
         </button>
       </div>
       <form>
