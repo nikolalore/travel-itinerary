@@ -118,10 +118,14 @@ export const DayDetail = () => {
               <LogoControl />
               <Marker
                 position={[tripData.coordinates?.y, tripData.coordinates?.x]}
+                icon={L.icon({
+                  iconUrl: '/img/marker.png',
+                  iconSize: [25, 41],
+                })}
               >
                 <Popup>
                   <div>
-                    <img src={logo} alt="Logo Czechitas" width={100} />
+                    <strong>{tripData.country_name}</strong>
                   </div>
                 </Popup>
               </Marker>
@@ -134,6 +138,10 @@ export const DayDetail = () => {
                       <Marker
                         key={event.location.name}
                         position={[event.location.y, event.location.x]}
+                        icon={L.icon({
+                          iconUrl: '/img/marker.png',
+                          iconSize: [25, 41],
+                        })}
                       >
                         <Popup>
                           <div>
