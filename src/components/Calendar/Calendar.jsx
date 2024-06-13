@@ -7,9 +7,11 @@ import { EventDrawer } from '../EventDrawer/EventDrawer';
 import { createPortal } from 'react-dom';
 import { supabase } from '../../db';
 
+const { VITE_MAP } = import.meta.env;
+
 export const Calendar = ({ events, onRefreshEvents }) => {
   const [drawerData, setDrawerData] = useState(null);
-  const eightOclockRef = useRef(null)
+  const eightOclockRef = useRef(null);
 
   const options = {
     weekday: 'long',
@@ -19,11 +21,10 @@ export const Calendar = ({ events, onRefreshEvents }) => {
   };
 
   useEffect(() => {
-
     if (eightOclockRef.current) {
-      eightOclockRef.current.scrollIntoView({behavio: "smooth"})
+      eightOclockRef.current.scrollIntoView({ behavio: 'smooth' });
     }
-  }, [])
+  }, []);
 
   const { tripId } = useParams();
   const { date } = useParams();
@@ -39,7 +40,7 @@ export const Calendar = ({ events, onRefreshEvents }) => {
           start_time: newEvent.start_time,
           end_time: newEvent.end_time,
           name: newEvent.name,
-          location: newEvent.location,
+          location: newEvent.location || null,
           description: newEvent.description,
           trip_id: tripId,
           date: formattedDate,
@@ -61,7 +62,7 @@ export const Calendar = ({ events, onRefreshEvents }) => {
           start_time: newEvent.start_time,
           end_time: newEvent.end_time,
           name: newEvent.name,
-          location: newEvent.location,
+          location: newEvent.location || null,
           description: newEvent.description,
           trip_id: tripId,
           date: formattedDate,
@@ -70,13 +71,45 @@ export const Calendar = ({ events, onRefreshEvents }) => {
       .select();
   };
 
+  const fetchEventLocationCoordinates = async (location) => {
+    if (!location) {
+      return null;
+    }
+    const response = await fetch(
+      `https://api.mapy.cz/v1/geocode?query=${location}&lang=cs&limit=1&type=regional&type=poi&apikey=${VITE_MAP}`,
+    );
+    const data = await response.json();
+    console.log(data);
+    return { x: data.items[0].position.lon, y: data.items[0].position.lat };
+  };
+
   const handleSubmit = async () => {
-    if (drawerData.action === 'insert') {
-      await insertEvent(drawerData.event);
-    } else {
-      await updateEvent(drawerData.event);
+    let coordinates = { x: null, y: null };
+    if (drawerData.event.location.name) {
+      const fetchedCoordinates = await fetchEventLocationCoordinates(
+        drawerData.event.location.name,
+      );
+      if (fetchedCoordinates) {
+        coordinates = fetchedCoordinates;
+      }
     }
 
+    const eventToSave = {
+      ...drawerData.event,
+      location: drawerData.event.location.name
+        ? {
+            x: coordinates.x,
+            y: coordinates.y,
+            name: drawerData.event.location.name,
+          }
+        : null, // Nastavení location na null, pokud není zadáno
+    };
+
+    if (drawerData.action === 'insert') {
+      await insertEvent(eventToSave);
+    } else {
+      await updateEvent(eventToSave);
+    }
     setDrawerData(null);
     onRefreshEvents();
   };
@@ -88,17 +121,21 @@ export const Calendar = ({ events, onRefreshEvents }) => {
         start_time: '',
         end_time: '',
         name: '',
-        location: '',
+        location: {
+          name: '',
+          x: null,
+          y: null,
+        },
         description: '',
       },
     });
   };
 
   return (
-    <div className='calendar-box'>
-    <div className='calendar-header'>
-      <div className="calendar-headline">Moje aktivity</div>
-      <button className="add-btn" onClick={handleNewEvent}>
+    <div className="calendar-box">
+      <div className="calendar-header">
+        <div className="calendar-headline">Moje aktivity</div>
+        <button className="add-btn" onClick={handleNewEvent}>
           +
         </button>
       </div>

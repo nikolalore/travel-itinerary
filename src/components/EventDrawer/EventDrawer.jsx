@@ -6,15 +6,33 @@ export const EventDrawer = ({ data, onClose, onChange, onSubmit }) => {
   }
 
   const handleInputChange = (e) => {
-    onChange({
-      action: data.action,
-      event: { ...data.event, [e.target.name]: e.target.value },
-    });
-  };
+    const { name, value } = e.target;
 
+    if (name === "location") {
+      onChange({
+        ...data,
+        event: {
+          ...data.event,
+          location: {
+            ...data.event.location,
+            name: value,
+          },
+        },
+      });
+    } else {
+      onChange({
+        ...data,
+        event: { ...data.event, [name]: value },
+      });
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!data.event.name) {
+      alert("Název události je povinný.");
+      return;
+    }
     onSubmit();
   };
 
@@ -54,7 +72,7 @@ export const EventDrawer = ({ data, onClose, onChange, onSubmit }) => {
             <input
               type="text"
               name="location"
-              value={data.event.location}
+              value={data.event.location?.name || ''}
               onChange={handleInputChange}
             />
           </label>

@@ -64,7 +64,6 @@ export const DayDetail = () => {
     const currentDate = new Date(date);
     const startDate = new Date(data[0].start_date);
     setDayOfTrip(differenceInDays(currentDate, startDate) + 1);
-    console.log(startDate);
   };
 
   useEffect(() => {
@@ -118,7 +117,7 @@ export const DayDetail = () => {
               />
               <LogoControl />
               <Marker
-                position={[tripData.coordinates.y, tripData.coordinates.x]}
+                position={[tripData.coordinates?.y, tripData.coordinates?.x]}
               >
                 <Popup>
                   <div>
@@ -126,6 +125,25 @@ export const DayDetail = () => {
                   </div>
                 </Popup>
               </Marker>
+              {tripData.calendar_events.length > 0 &&
+                tripData.calendar_events.map(
+                  (event) =>
+                    event.location?.name &&
+                    event.location?.y &&
+                    event.location?.x && (
+                      <Marker
+                        key={event.location.name}
+                        position={[event.location.y, event.location.x]}
+                      >
+                        <Popup>
+                          <div>
+                            <strong>{event.name}</strong>
+                            <p>{event.description}</p>
+                          </div>
+                        </Popup>
+                      </Marker>
+                    ),
+                )}
             </MapContainer>
           </div>
         </div>
