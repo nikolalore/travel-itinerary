@@ -63,14 +63,17 @@
 @media (max-width: 420px) {
   .day-header {
     width: 100%;
-    padding: 3px; /* //zkouška */
-    height: 130px /* //zkouška */;
-    
+    padding: 3px;
+    /* //zkouška */
+    height: 130px
+      /* //zkouška */
+    ;
+
   }
 
   .back-button {
     font-size: 2rem;
-    margin-right: 0rem;
+    margin-right: 0.5rem;
   }
 
   .day {
