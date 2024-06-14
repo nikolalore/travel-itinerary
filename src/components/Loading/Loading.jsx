@@ -1,11 +1,10 @@
 import React from 'react';
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import './style.css'; 
 
 export const Loading = () => {
   return (
-    <div>
+    <div className='loading'>
       <p>Načítám...</p>
-      <DotLottieReact src={'/img/Loading.gif'} loop autoplay />
     </div>
   );
 };
