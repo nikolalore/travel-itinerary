@@ -50,14 +50,9 @@ export const Form = () => {
           country_name: countryData.name.toString(),
         },
       ])
-      .select(); //select() vrací hodnoty vložené do databáze tak, abychom z nich mohli vytáhnout id
+      .select(); 
 
-    // if (error) {
-    //   console.error('Chyba při vkládání dat do databáze:', error);
-    //   return;
-    // }
-
-    const tripId = data[0].id; // tohle je ID vyplněného tripu, [0] získává první položku z vrácených dat, což v tomhle případě odpovídá nově vložené cestě, .id –> získávám konkrétní id z nového tripu
+    const tripId = data[0].id; 
     navigate(`/trip/${tripId}`);
   };
 
