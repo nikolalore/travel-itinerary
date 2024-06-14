@@ -64,9 +64,7 @@
   .day-header {
     width: 100%;
     padding: 3px;
-    /* //zkouška */
     height: 130px
-      /* //zkouška */
     ;
 
   }
@@ -87,6 +85,6 @@
     margin: 0;
     font-size: 1.25rem;
     font-weight: normal;
-    margin-right: 0.5rem;
+    margin-right: 0.25rem;
   }
 }
