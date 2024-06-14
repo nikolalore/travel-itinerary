@@ -106,7 +106,7 @@ export const DayDetail = () => {
           <div className="widgets-map">
             <MapContainer
               center={[tripData.coordinates.y, tripData.coordinates.x]}
-              zoom={15}
+              zoom={10}
               scrollWheelZoom={false}
             >
               <TileLayer

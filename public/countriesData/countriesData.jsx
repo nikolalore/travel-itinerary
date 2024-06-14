@@ -8,7 +8,7 @@ export const countriesData = [
   {
     name: 'Belgie',
     code: 'be',
-    capitalCoords: { y: 51.216445, x: 4.4210925 },
+    capitalCoords: { y: 50.894941, x: 4.341545 },
     image: 'be.jpg',
   },
   {
